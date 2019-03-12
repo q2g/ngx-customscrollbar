@@ -20,7 +20,6 @@ ___
   - [ngxCustomScrollbarScrollable](#ngxcustomscrollbarscrollable)
   - [ngxCustomScrollbarOverflowAutoY](#ngxcustomscrollbaroverflowautoy)
   - [ngxCustomScrollbarOverflowAutoX](#ngxcustomscrollbaroverflowautox)
-- [Styling](#styling)
 - [Author](#author)
 - [Credit](#credit)
 
@@ -92,6 +91,14 @@ SCSS
   .scrollView {
     flex: 1;
     overflow-y: auto;
+
+    /** disable scrollbar design global */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
   }
 }
 ```
@@ -136,6 +143,14 @@ SCSS
   .scrollView {
     flex: 1;
     overflow-x: auto;
+
+    /** disable native scrollbar visibility */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     > div {
         white-space: nowrap;
@@ -183,23 +198,6 @@ scrollbar will allways be visible.
 ```html
 <ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowAutoX="true"></ngx-customscrollbar>
 ```
-
-## Styling
-
-```scss
-.my-scrollbar {
-  --scrollbar-color: transparent;
-  --scrollbar-container-color: transparent;
-  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
-  --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
-  --scrollbar-border-radius: 4px;
-  --scrollbar-size: 6px;
-  --scrollbar-padding: 8px;
-  --scroll-view-margin: 0;
-  --scroll-view-color: transparent;
-}
-```
-
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/q2g/ngx-customscrollbar/issues) or create a pull request.
 
