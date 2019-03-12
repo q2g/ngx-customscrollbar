@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "ngxCustomScrollbar",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "ngx-customscrollbar",
+      "kebab-case"
+    ]
+  }
+}

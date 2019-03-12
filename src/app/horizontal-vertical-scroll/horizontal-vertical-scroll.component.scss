@@ -1,0 +1,41 @@
+.scroll-wrapper {
+
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-wrapper--inner {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  q2g-scroll-bar.vertical {
+    margin-left: 1rem;
+    display: flex;
+  }
+
+  q2g-scroll-bar.horizontal {
+      width: calc(100% - 10px);
+      margin-top: 1rem;
+  }
+
+  .scrollView {
+    flex: 1;
+    overflow: auto;
+
+    >div {
+      white-space: nowrap;
+    }
+  }
+}
