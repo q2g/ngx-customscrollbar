@@ -115,8 +115,6 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
 
                 this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
                 this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
-
-                console.log(this.trackMeasure);
                 break;
             /** viewport has been scrolled for a specific amount */
             default:
