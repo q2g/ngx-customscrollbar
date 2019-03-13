@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewportControl } from 'projects/scrollbars/src/lib/provider/viewport.control';
+import { ViewportControl } from 'scrollbars';
 
 @Component({
     selector: 'app-horizontal-vertical-scroll',
@@ -9,7 +9,7 @@ import { ViewportControl } from 'projects/scrollbars/src/lib/provider/viewport.c
 })
 export class HorizontalVerticalScrollComponent {
 
-    public items: Array<string | number> = Array.from({ length: 100 }, (val, index) => index);
+    public items: Array<string | number> = Array.from({ length: 30 }, (val, index) => index);
 
     public constructor(
         private viewportControl: ViewportControl

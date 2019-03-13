@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewportControl } from 'projects/scrollbars/src/lib/provider/viewport.control';
+import { ViewportControl } from 'scrollbars';
 import { delay } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 

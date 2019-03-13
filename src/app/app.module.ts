@@ -7,7 +7,7 @@ import { VerticalScrollComponent } from './vertical-scroll/vertical-scroll.compo
 import { HorizontalScrollComponent } from './horizontal-scroll/horizontal-scroll.component';
 import { HorizontalVerticalScrollComponent } from './horizontal-vertical-scroll/horizontal-vertical-scroll.component';
 import { AsyncScrollComponent } from './async/async-scroll.component';
-import { NgxCustomScrollbarModule } from 'projects/scrollbars/src/public_api';
+import { NgxCustomScrollbarModule } from 'scrollbars';
 
 @NgModule({
   declarations: [
