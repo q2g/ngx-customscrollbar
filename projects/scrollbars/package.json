@@ -1,11 +1,21 @@
 {
   "name": "ngx-customscrollbar",
   "version": "1.0.0",
+  "description": "ngx scrollbars to scroll everything",
   "repository": {
     "url": "https://github.com/q2g/ngx-customscrollbar.git",
     "type": "git"
   },
   "author": "Ralf Hannuschka (https://github.com/q2g)",
+  "keywords": [
+    "scrollbar",
+    "native",
+    "scroll",
+    "custom",
+    "angular",
+    "canvas",
+    "virtual"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
