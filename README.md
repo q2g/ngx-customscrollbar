@@ -2,8 +2,8 @@
   <h1 align="center">Q2g - Ngx Custom Scrollbars</h1>
 </p>
 
-[![npm](https://img.shields.io/npm/v/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-scrollbar)
-[![npm](https://img.shields.io/npm/dt/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-scrollbar)
+[![npm](https://img.shields.io/npm/v/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
+[![npm](https://img.shields.io/npm/dt/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
 some description goes here
