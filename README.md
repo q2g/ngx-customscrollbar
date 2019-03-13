@@ -18,8 +18,8 @@ ___
 - [Horizontal Scrollbar](#horizontal-scrollbar)
 - [Directives](#directives)
   - [ngxCustomScrollbarScrollable](#ngxcustomscrollbarscrollable)
-  - [ngxCustomScrollbarOverflowAutoY](#ngxcustomscrollbaroverflowautoy)
-  - [ngxCustomScrollbarOverflowAutoX](#ngxcustomscrollbaroverflowautox)
+  - [ngxCustomScrollbarOverflowY](#ngxcustomscrollbaroverflowy)
+  - [ngxCustomScrollbarOverflowX](#ngxcustomscrollbaroverflowx)
 - [Author](#author)
 - [Credit](#credit)
 
@@ -181,22 +181,27 @@ Wraps the html element into a HtmlScrollViewport and registered on ViewportContr
 <ngx-customscrollbar></ngx-customscrollbar>
 ```
 
-### ngxCustomScrollbarOverflowAutoY
+### ngxCustomScrollbarOverflowY
 
-show / hides a scrollbar if overflow on x axis exists, if value is set to false
-scrollbar will allways be visible.
+structural directive, controls visibility of scrollbar lice css property overflow-x, possible
+values are **none**, **scroll** or **auto**. Default value is **auto**. If **none** is set container will not be scrollable anymore.
 
+@example
 ```html
-<ngx-customscrollbar *ngxCustomScrollbarOverflowAutoY="true"></ngx-customscrollbar>
+<ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowY="'scroll'">
+</ngx-customscrollbar>
 ```
 
-### ngxCustomScrollbarOverflowAutoX
+### ngxCustomScrollbarOverflowX
 
-show / hides a scrollbar if overflow on x axis exists, if value is set to false
-scrollbar will allways be visible.
+structural directive, controls visibility of scrollbar lice css property overflow-x, possible
+values are **none**, **scroll** or **auto**. Default value is **auto**
+If **none** is set container will not be scrollable anymore.
 
+@example
 ```html
-<ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowAutoX="true"></ngx-customscrollbar>
+<ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowX="'scroll'">
+</ngx-customscrollbar>
 ```
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/q2g/ngx-customscrollbar/issues) or create a pull request.
