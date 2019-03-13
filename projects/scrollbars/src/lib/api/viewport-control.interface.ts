@@ -8,6 +8,8 @@ export interface IViewportControl {
 
     viewportDimension: DomHelper.IElementMeasure;
 
+    readonly disabled: boolean;
+
     /**
      * scroll page by specific amount
      *

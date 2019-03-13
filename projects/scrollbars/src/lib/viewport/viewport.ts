@@ -9,7 +9,7 @@ export abstract class Viewport implements Scrollbar.IScrollbarViewport {
 
     protected scrolled$: Subject<void> = new Subject();
 
-    private viewPortController: IViewportControl;
+    protected viewPortController: IViewportControl;
 
     abstract measureSize(): DomHelper.IScrollContainerMeasure;
 

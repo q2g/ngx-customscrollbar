@@ -2,7 +2,7 @@ import { NgZone, Inject } from '@angular/core';
 import { supportsScrollBehavior } from '@angular/cdk/platform';
 import { fromEvent, Observable, of, Subject } from 'rxjs';
 import { DomHelper } from '../helper/dom.helper';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap, catchError } from 'rxjs/operators';
 import { Viewport } from './viewport';
 import { Scrollbar } from '../api/scrollbar.interface';
 
@@ -54,10 +54,11 @@ export class HtmlViewport extends Viewport {
     }
 
     public scrollTo(offset: Scrollbar.IOffset) {
+        console.log(offset);
         if (supportsScrollBehavior()) {
             this._element.scrollTo(offset);
         } else {
-            const {top, left} = offset;
+            const { top, left } = offset;
             if (left || left === 0) {
                 this._element.scrollLeft = left;
             }
@@ -80,7 +81,11 @@ export class HtmlViewport extends Viewport {
     private registerEvents() {
         this.zone.runOutsideAngular(() => {
             this.scroll$.subscribe(() => {
-                this.scrolled$.next();
+                if (!this.viewPortController.disabled) {
+                    this.scrolled$.next();
+                    return;
+                }
+                this.scrollTo({left: 0, top: 0 });
             });
         });
     }

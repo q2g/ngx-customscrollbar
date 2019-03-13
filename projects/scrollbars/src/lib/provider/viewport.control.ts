@@ -27,6 +27,8 @@ export class ViewportControl implements OnDestroy {
 
     private viewportModel: ScrollContainerMeasureModel;
 
+    private _disabled: boolean;
+
     public constructor(
         private resize: WindowResize
     ) {
@@ -63,6 +65,10 @@ export class ViewportControl implements OnDestroy {
 
     public get viewportDimension(): DomHelper.IScrollContainerMeasure {
         return this.viewportModel.measures;
+    }
+
+    public get disabled(): boolean {
+        return this._disabled || false;
     }
 
     /**
@@ -122,6 +128,10 @@ export class ViewportControl implements OnDestroy {
             top: 0,
             left: 0
         });
+    }
+
+    public disableScroll(disabled: boolean) {
+        this._disabled = disabled;
     }
 
     /**
