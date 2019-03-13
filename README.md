@@ -183,7 +183,7 @@ Wraps the html element into a HtmlScrollViewport and registered on ViewportContr
 
 ### ngxCustomScrollbarOverflowY
 
-structural directive, controls visibility of scrollbar lice css property overflow-x, possible
+structural directive, controls visibility of scrollbar like css property overflow-x, possible
 values are **none**, **scroll** or **auto**. Default value is **auto**. If **none** is set container will not be scrollable anymore.
 
 @example
@@ -194,7 +194,7 @@ values are **none**, **scroll** or **auto**. Default value is **auto**. If **non
 
 ### ngxCustomScrollbarOverflowX
 
-structural directive, controls visibility of scrollbar lice css property overflow-x, possible
+structural directive, controls visibility of scrollbar like css property overflow-x, possible
 values are **none**, **scroll** or **auto**. Default value is **auto**
 If **none** is set container will not be scrollable anymore.
 
