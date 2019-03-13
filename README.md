@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/dt/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-some description goes here
+Pure ngx scrollbars without dependencies to jQuery or other scroll librarys, to bind customized scrollbars to every scrollable html element like scrollable div or textarea for example or a virtual view like a canvas.
 ___
 
 ## Table of Contents

@@ -1,7 +1,7 @@
 {
   "name": "ngx-customscrollbar",
   "version": "1.0.0",
-  "description": "ngx scrollbars to scroll everything",
+  "description": "Pure ngx scrollbars without dependencies to jQuery or other scroll librarys, to bind customized scrollbars to every scrollable html element like scrollable div or textarea for example or a virtual view like a canvas",
   "repository": {
     "url": "https://github.com/q2g/ngx-customscrollbar.git",
     "type": "git"
