@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewportControl } from 'projects/scrollbars/src/lib/provider/viewport.control';
+import { ViewportControl } from 'scrollbars';
 
 @Component({
     selector: 'app-vertical-scroll',

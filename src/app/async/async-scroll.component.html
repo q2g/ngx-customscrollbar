@@ -6,7 +6,7 @@
   <div class="scrollView" ngxCustomScrollbarScrollable>
     <div *ngFor="let item of items"><span>Ipsum {{item}}</span></div>
   </div>
-  <ngx-customscrollbar [scrollDirection]="'vertical'" *ngxCustomScrollbarOverflowAutoY></ngx-customscrollbar>
+  <ngx-customscrollbar [scrollDirection]="'vertical'" *ngxCustomScrollbarOverflowY="'auto'"></ngx-customscrollbar>
 </div>
 <div style="margin-top: 40px;">
   <button (click)="resetScrollbar()">Reset Scrollbar</button>

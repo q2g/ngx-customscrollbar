@@ -3,12 +3,5 @@
   <div class="scrollView" ngxCustomScrollbarScrollable>
     <div *ngFor="let item of items">Lorem Ipsum {{item}}</div>
   </div>
-  <ngx-customscrollbar></ngx-customscrollbar>
-</div>
-
-<div style="margin-top: 40px;">
-  <button (click)="resetScrollbar()">Reset Scrollbar</button>
-  <button (click)="addContent()">Add Moar Content</button>
-  <button (click)="removeContent()">Remove Content</button>
-  <button (click)="changeItemContent()">Change Item Content</button>
+  <ngx-customscrollbar *ngxCustomScrollbarOverflowY="'auto'"></ngx-customscrollbar>
 </div>

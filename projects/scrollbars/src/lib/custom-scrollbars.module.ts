@@ -3,22 +3,22 @@ import { CommonModule } from '@angular/common';
 import {NgxCustomScrollbarComponent} from './components/scrollbar.component';
 import {NgxCustomScrollbarHideOnNativeStyleDirective } from './directives/no-native-style.directive';
 import {NgxCustomScrollbarScrollableDirective} from './directives/scrollable-container.directive';
-import {NgxCustomScrollbarOverflowAutoYDirective} from './directives/overflow-auto-y.directive';
-import {NgxCustomScrollbarOverflowAutoXDirective} from './directives/overflow-auto-x.directive';
+import {NgxCustomScrollbarOverflowYDirective} from './directives/overflow-y.directive';
+import {NgxCustomScrollbarOverflowXDirective} from './directives/overflow-x.directive';
 
 @NgModule({
     declarations: [
         NgxCustomScrollbarComponent,
         NgxCustomScrollbarHideOnNativeStyleDirective,
-        NgxCustomScrollbarOverflowAutoXDirective,
-        NgxCustomScrollbarOverflowAutoYDirective,
+        NgxCustomScrollbarOverflowXDirective,
+        NgxCustomScrollbarOverflowYDirective,
         NgxCustomScrollbarScrollableDirective,
     ],
     exports: [
         NgxCustomScrollbarComponent,
         NgxCustomScrollbarHideOnNativeStyleDirective,
-        NgxCustomScrollbarOverflowAutoXDirective,
-        NgxCustomScrollbarOverflowAutoYDirective,
+        NgxCustomScrollbarOverflowXDirective,
+        NgxCustomScrollbarOverflowYDirective,
         NgxCustomScrollbarScrollableDirective,
     ],
     imports: [

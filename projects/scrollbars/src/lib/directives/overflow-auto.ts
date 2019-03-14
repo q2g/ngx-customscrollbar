@@ -1,15 +1,18 @@
 import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy } from '@angular/core';
-import { ViewportControl } from '../provider/viewport.control';
-import { Scrollbar } from '../api/scrollbar.interface';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Scrollbar } from '../api/scrollbar.interface';
 import { DomHelper } from '../helper/dom.helper';
+import { Overflow } from '../model/overflow';
+import { ViewportControl } from '../provider/viewport.control';
 
 /**
  * remove component if we dont need to scroll anymore, and
  * show it again if we can scroll. Same as css overflow: auto
  */
-export abstract class NgxCustomScrollbarOverflowAuto implements DoCheck, OnDestroy, OnInit {
+export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, OnInit {
+
+    protected overflow: Overflow = Overflow.SCROLL;
 
     private isViewportVisible = false;
     private needsUpdate: boolean;
@@ -21,7 +24,7 @@ export abstract class NgxCustomScrollbarOverflowAuto implements DoCheck, OnDestr
         /** The template to use when stamping out new items. */
         private template: TemplateRef<any>,
         /** viewport control to bound */
-        @Host() private viewportController: ViewportControl
+        @Host() protected viewportController: ViewportControl
     ) {
         this.needsUpdate = false;
         this.destroyed$ = new Subject();
@@ -72,7 +75,15 @@ export abstract class NgxCustomScrollbarOverflowAuto implements DoCheck, OnDestr
      * check for updates on scrollbar
      */
     protected checkScrollbarNeedsUpdate(): boolean {
-        const isOverflow = this.hasOverflow(this.viewportController.viewportDimension);
+
+        let  isOverflow: boolean;
+
+        switch (this.overflow) {
+            case Overflow.NONE:   isOverflow = false; break;
+            case Overflow.SCROLL: isOverflow = true;  break;
+            default:              isOverflow = this.hasOverflow(this.viewportController.viewportDimension);
+        }
+
         this.needsUpdate = isOverflow !== this.isViewportVisible;
         this.isViewportVisible = isOverflow;
         return this.needsUpdate;
@@ -83,7 +94,6 @@ export abstract class NgxCustomScrollbarOverflowAuto implements DoCheck, OnDestr
      * if scrollbar should be hidden now
      */
     private toggleScrollbar() {
-
         if (this.isViewportVisible) {
             this.viewContainerRef.createEmbeddedView(this.template);
         } else {
