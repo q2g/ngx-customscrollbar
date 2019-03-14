@@ -2,7 +2,7 @@
   <h1 align="center">Q2g - Ngx Custom Scrollbars</h1>
 </p>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/48294aa49a3c4f2db610df9e2676ccfd)](https://app.codacy.com/app/konne/ngx-customscrollbar?utm_source=github.com&utm_medium=referral&utm_content=q2g/ngx-customscrollbar&utm_campaign=badger)
+[![CodeFactor](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar/badge)](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/v/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/dt/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
