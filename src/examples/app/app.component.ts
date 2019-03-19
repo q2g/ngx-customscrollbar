@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewportControl } from 'scrollbars';
+import { ViewportControl } from 'ngx-customscrollbars';
 
 @Component({
     selector: 'app-root',

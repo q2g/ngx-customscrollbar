@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "scrollbars": [
-        "dist/scrollbars"
+      "ngx-customscrollbars": [
+        "dist/ngx-customscrollbars"
       ],
       "scrollbars/*": [
-        "dist/scrollbars/*"
+        "dist/ngx-customscrollbars/*"
       ]
     }
   }
