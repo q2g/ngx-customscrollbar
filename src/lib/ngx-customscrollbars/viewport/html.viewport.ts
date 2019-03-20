@@ -54,7 +54,6 @@ export class HtmlViewport extends Viewport {
     }
 
     public scrollTo(offset: Scrollbar.IOffset) {
-        console.log(offset);
         if (supportsScrollBehavior()) {
             this._element.scrollTo(offset);
         } else {

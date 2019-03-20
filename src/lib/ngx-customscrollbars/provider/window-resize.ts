@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable, Subject, fromEvent, Subscription } from 'rxjs';
-import { debounceTime, throttleTime, debounce } from 'rxjs/operators';
+import { Observable, Subject, fromEvent, Subscription, OperatorFunction, of } from 'rxjs';
+import { debounceTime, throttleTime, debounce, tap } from 'rxjs/operators';
+import { animationFrame } from 'rxjs/internal/scheduler/animationFrame';
 
 /**
  *
@@ -70,7 +71,41 @@ export class WindowResize {
     private subscribeToWindowResizeEvent(): void {
         this.zone.runOutsideAngular(() => {
             this.resizeSubscription = this.windowResize$
+                .pipe(debounceAnimationFrame())
                 .subscribe(() => this.shared$.next());
         });
     }
+}
+
+function debounceAnimationFrame<T>(): OperatorFunction<T, T> {
+
+    return function (source$: Observable<T>): Observable<T> {
+
+        let resizeFired = false;
+        let drawing = false;
+
+        const requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame;
+
+        const obs = new Observable<T>((observer) => {
+            function drawResize(): void {
+                if (resizeFired === true) {
+                    resizeFired = false;
+                    requestAnimationFrame(() => {
+                        observer.next();
+                        drawResize();
+                    });
+                } else {
+                    drawing = false;
+                }
+            }
+
+            source$.subscribe(() => {
+                if (drawing === false) {
+                    resizeFired = true;
+                    drawResize();
+                }
+            });
+        });
+        return obs;
+    };
 }

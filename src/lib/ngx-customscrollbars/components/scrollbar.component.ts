@@ -1,6 +1,6 @@
 
 // tslint:disable-next-line:max-line-length
-import { AfterViewInit, Component, ElementRef, Host, Inject, NgZone, OnDestroy, Renderer2, ViewChild, OnInit, Input, HostBinding } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Host, Inject, NgZone, OnDestroy, Renderer2, ViewChild, OnInit, Input, HostBinding, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject, Observable } from 'rxjs';
 import { tap, takeUntil, switchMap, finalize } from 'rxjs/operators';
@@ -37,6 +37,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
         @Inject(DOCUMENT) private document,
         private ngZone: NgZone,
         private renderer: Renderer2,
+        private changeDetector: ChangeDetectorRef
     ) {
         this.isDestroyed$ = new Subject();
     }
@@ -89,6 +90,8 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      */
     private handleViewportLoaded(measure: DomHelper.IScrollContainerMeasure) {
 
+        console.log('viewport loaded');
+
         const thumb = this.scrollbarThumb.nativeElement;
         const track = this.scrollbarTrack.nativeElement;
 
@@ -113,8 +116,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
                 const thumb = this.scrollbarThumb.nativeElement;
                 const track = this.scrollbarTrack.nativeElement;
 
+                this.renderer.setStyle(thumb, 'display', 'none');
                 this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
                 this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
+
                 break;
             /** viewport has been scrolled for a specific amount */
             default:

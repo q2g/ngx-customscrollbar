@@ -56,10 +56,7 @@ export class ViewportControl implements OnDestroy {
 
         /** register on window resize events */
         this.resize.onChange()
-            .pipe(
-                auditTime(100),
-                takeUntil(this.destroy$)
-            )
+            .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.update());
     }
 

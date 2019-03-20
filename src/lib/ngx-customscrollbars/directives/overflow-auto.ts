@@ -1,4 +1,4 @@
-import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy } from '@angular/core';
+import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Scrollbar } from '../api/scrollbar.interface';
@@ -24,7 +24,8 @@ export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, 
         /** The template to use when stamping out new items. */
         private template: TemplateRef<any>,
         /** viewport control to bound */
-        @Host() protected viewportController: ViewportControl
+        @Host() protected viewportController: ViewportControl,
+        private changeDetector: ChangeDetectorRef
     ) {
         this.needsUpdate = false;
         this.destroyed$ = new Subject();
@@ -52,21 +53,18 @@ export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, 
      * and check scrollbar for visibility
      */
     ngOnInit() {
-        this.viewportController.onLoad()
-            .pipe(
-                tap(() => this.checkScrollbarNeedsUpdate()),
-                switchMap(() => this.viewportController.onUpdate()),
-                takeUntil(this.destroyed$)
-            )
-            .subscribe((updateEvent) => {
-                const event = updateEvent.type;
-                let checkUpdate = false;
-                checkUpdate = checkUpdate || event === Scrollbar.VIEWPORT_EVENT.UPDATE;
+        this.viewportController.onLoad().pipe(
+            tap(() => this.checkScrollbarNeedsUpdate()),
+            switchMap(() => this.viewportController.onUpdate()),
+            takeUntil(this.destroyed$)
+        ).subscribe((updateEvent) => {
+            const event = updateEvent.type;
+            const checkUpdate = event === Scrollbar.VIEWPORT_EVENT.UPDATE;
 
-                if (checkUpdate) {
-                    this.checkScrollbarNeedsUpdate();
-                }
-            });
+            if (checkUpdate) {
+                this.checkScrollbarNeedsUpdate();
+            }
+        });
     }
 
     protected abstract hasOverflow(dimensions: DomHelper.IScrollContainerMeasure): boolean;
@@ -74,19 +72,22 @@ export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, 
     /**
      * check for updates on scrollbar
      */
-    protected checkScrollbarNeedsUpdate(): boolean {
+    protected checkScrollbarNeedsUpdate() {
 
-        let  isOverflow: boolean;
+        let isOverflow: boolean;
 
         switch (this.overflow) {
-            case Overflow.NONE:   isOverflow = false; break;
-            case Overflow.SCROLL: isOverflow = true;  break;
-            default:              isOverflow = this.hasOverflow(this.viewportController.viewportDimension);
+            case Overflow.NONE: isOverflow = false; break;
+            case Overflow.SCROLL: isOverflow = true; break;
+            default: isOverflow = this.hasOverflow(this.viewportController.viewportDimension);
         }
 
         this.needsUpdate = isOverflow !== this.isViewportVisible;
         this.isViewportVisible = isOverflow;
-        return this.needsUpdate;
+
+        if (this.needsUpdate) {
+            this.changeDetector.detectChanges();
+        }
     }
 
     /**

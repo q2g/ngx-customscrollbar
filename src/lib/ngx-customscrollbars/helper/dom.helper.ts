@@ -32,13 +32,14 @@ export namespace DomHelper {
     }
 
     export function getMeasure(el: HTMLElement): DomHelper.IElementMeasure {
+        // get computed style not works that good and that fast like el.offsetHeight
         return {
             height: el.offsetHeight,
             width: el.offsetWidth,
-            innerHeight: getElementHeight(el),
-            innerWidth: getElementWidth(el),
-            top: parseInt(getElementStyle(el, 'top'), 10),
-            left: parseInt(getElementStyle(el, 'left'), 10)
+            innerHeight: getInnerHeight(el),
+            innerWidth: getInnerWidth(el),
+            top: el.offsetTop,
+            left: el.offsetLeft
         };
     }
 
@@ -54,17 +55,25 @@ export namespace DomHelper {
     }
 
     /**
-     * get element inner height, without border, margin and padding
+     * get element inner height, without padding
      */
-    export function getElementHeight(el: HTMLElement): number {
-        return parseInt(getElementStyle(el, 'height'), 10);
+    export function getInnerHeight(el: HTMLElement): number {
+        /** @todo this will called alot times on resize */
+        const computed = getComputedStyle(el, null);
+        const paddingTop = parseInt(computed.getPropertyValue('padding-top'), 10);
+        const paddingBot = parseInt(computed.getPropertyValue('padding-bottom'), 10);
+        return el.offsetHeight - paddingTop - paddingBot;
     }
 
     /**
      * get elment inner width without border, margin and padding
      */
-    export function getElementWidth(el: HTMLElement): number {
-        return parseInt(getElementStyle(el, 'width'), 10);
+    export function getInnerWidth(el: HTMLElement): number {
+        /** @todo this will called alot times on resize */
+        const computed = getComputedStyle(el, null);
+        const paddingLeft = parseInt(computed.getPropertyValue('padding-left'), 10);
+        const paddingRight = parseInt(computed.getPropertyValue('padding-right'), 10);
+        return el.offsetWidth - paddingLeft - paddingRight;
     }
 
     /**
