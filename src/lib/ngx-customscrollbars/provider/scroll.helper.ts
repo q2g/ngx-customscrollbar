@@ -6,8 +6,16 @@ export abstract class ScrollHelper {
     public constructor(
         protected thumbMeasure: DomHelper.IElementMeasure,
         protected trackMeasure: DomHelper.IElementMeasure,
-        protected viewportMeasure: DomHelper.IScrollContainerMeasure
+        protected _viewportMeasure: DomHelper.IScrollContainerMeasure
     ) { }
+
+    public set viewportMeasure(measure: DomHelper.IScrollContainerMeasure) {
+        this._viewportMeasure = measure;
+    }
+
+    public get viewportMeasure(): DomHelper.IScrollContainerMeasure {
+        return this._viewportMeasure;
+    }
 
     /**
      * returns thumb transform property

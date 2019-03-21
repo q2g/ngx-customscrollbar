@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "demo": "ng build ngx-customscrollbars && npm start",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -17,10 +18,10 @@
     "@angular/core": "7.2.10",
     "@angular/forms": "7.2.10",
     "@angular/http": "7.2.10",
+    "@angular/material": "^7.3.5",
     "@angular/platform-browser": "7.2.10",
     "@angular/platform-browser-dynamic": "7.2.10",
     "@angular/router": "7.2.10",
-    "core-js": "3.0.0",
     "rxjs": "6.4.0",
     "tslib": "1.9.3",
     "zone.js": "0.8.29"
@@ -28,7 +29,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.6",
     "@angular-devkit/build-ng-packagr": "0.13.6",
-    "@angular/cdk": "7.3.4",
+    "@angular/cdk": "^7.3.5",
     "@angular/cli": "7.3.6",
     "@angular/compiler-cli": "7.2.10",
     "@angular/language-service": "7.2.10",
@@ -36,6 +37,7 @@
     "@types/jasminewd2": "2.0.6",
     "@types/node": "11.11.4",
     "codelyzer": "4.5.0",
+    "core-js": "^3.0.0",
     "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.0.1",

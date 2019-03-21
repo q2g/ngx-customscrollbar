@@ -1,11 +1,10 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { Scrollbar } from '../api/scrollbar.interface';
 import { WindowResize } from './window-resize';
 import { DomHelper } from '../helper/dom.helper';
 import { ScrollContainerMeasureModel } from '../model/scroll-container-measure.model';
-import { debounceTime, auditTime } from 'rxjs/operators';
 
 /**
  * viewport contol service, the glue between scrollbars and the viewport
@@ -18,6 +17,8 @@ export class ViewportControl implements OnDestroy {
     private viewportReady$: ReplaySubject<ScrollContainerMeasureModel>;
 
     private destroy$: Subject<boolean> = new Subject();
+
+    private scrollSub: Subscription;
 
     private scrollbarViewPort: Scrollbar.IScrollbarViewport;
     private scrollPosition = {
@@ -34,6 +35,8 @@ export class ViewportControl implements OnDestroy {
     ) {
         this.viewportUpdate$ = new Subject();
         this.viewportReady$ = new ReplaySubject(1);
+
+        this.registerEvents();
     }
 
     /**
@@ -41,8 +44,16 @@ export class ViewportControl implements OnDestroy {
      */
     public set viewPort(viewPort: Scrollbar.IScrollbarViewport) {
 
+        if (this.scrollbarViewPort && this.scrollbarViewPort === viewPort) {
+            return;
+        }
+
+        if (this.scrollSub) {
+            this.scrollSub.unsubscribe();
+        }
+
         this.scrollbarViewPort = viewPort;
-        this.scrollbarViewPort.onScrolled()
+        this.scrollSub = this.scrollbarViewPort.onScrolled()
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
                 this.onScrolled();
@@ -53,11 +64,6 @@ export class ViewportControl implements OnDestroy {
         /** create new viewport model if a viewport has been bound */
         this.viewportModel = new ScrollContainerMeasureModel(viewPort.measureSize());
         this.viewportReady$.next(this.viewportModel);
-
-        /** register on window resize events */
-        this.resize.onChange()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => this.update());
     }
 
     public get viewportDimension(): DomHelper.IScrollContainerMeasure {
@@ -78,7 +84,9 @@ export class ViewportControl implements OnDestroy {
         this.scrollTo(this.sanitizeScrollPosition({ left: 0, top: scrollTop }));
     }
 
+    /** not called if i just reload this */
     ngOnDestroy(): void {
+        console.log('i got destroyed');
         this.destroy$.next(true);
 
         this.viewportReady$.complete();
@@ -131,12 +139,18 @@ export class ViewportControl implements OnDestroy {
         this._disabled = disabled;
     }
 
+    private registerEvents() {
+        this.resize.onChange()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => this.update());
+    }
+
     /**
      * viewport has been scrolled
      */
     private onScrolled() {
 
-        const scrolled  = this.scrollbarViewPort.scrolledOffset;
+        const scrolled = this.scrollbarViewPort.scrolledOffset;
         const scrolledY = this.scrollPosition.vertical !== scrolled.top;
         const scrolledX = this.scrollPosition.horizontal !== scrolled.left;
 

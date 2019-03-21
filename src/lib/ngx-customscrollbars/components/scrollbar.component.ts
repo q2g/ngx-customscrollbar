@@ -37,7 +37,6 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
         @Inject(DOCUMENT) private document,
         private ngZone: NgZone,
         private renderer: Renderer2,
-        private changeDetector: ChangeDetectorRef
     ) {
         this.isDestroyed$ = new Subject();
     }
@@ -89,12 +88,8 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * a viewport has been added to viewport controller
      */
     private handleViewportLoaded(measure: DomHelper.IScrollContainerMeasure) {
-
-        console.log('viewport loaded');
-
         const thumb = this.scrollbarThumb.nativeElement;
         const track = this.scrollbarTrack.nativeElement;
-
         this.thumbMeasure = new ContainerMeasureModel(DomHelper.getMeasure(thumb));
         this.trackMeasure = new ContainerMeasureModel(DomHelper.getMeasure(track));
         this.viewportMeasure = measure;
@@ -142,11 +137,9 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
                 ? HorizontalScrollHelper
                 : VerticalScrollHelper;
 
-            this.scrollHelper = new scrollHelperConstructor(
-                this.thumbMeasure,
-                this.trackMeasure,
-                this.viewportMeasure
-            );
+            this.scrollHelper = new scrollHelperConstructor(this.thumbMeasure, this.trackMeasure, this.viewportMeasure);
+        } else {
+            this.scrollHelper.viewportMeasure = this.viewportMeasure;
         }
     }
 

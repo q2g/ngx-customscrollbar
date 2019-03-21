@@ -32,7 +32,6 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnD
     ngOnDestroy() {
         this.htmlViewport.destroy();
         this.domMutations.disconnect();
-
         this.viewportControl = null;
     }
 

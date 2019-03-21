@@ -1,8 +1,8 @@
 import { NgZone, Inject } from '@angular/core';
 import { supportsScrollBehavior } from '@angular/cdk/platform';
-import { fromEvent, Observable, of, Subject } from 'rxjs';
+import { fromEvent, Observable, Subject } from 'rxjs';
 import { DomHelper } from '../helper/dom.helper';
-import { takeUntil, tap, catchError } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Viewport } from './viewport';
 import { Scrollbar } from '../api/scrollbar.interface';
 
