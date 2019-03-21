@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { Scrollbar } from '../api/scrollbar.interface';
@@ -86,13 +86,10 @@ export class ViewportControl implements OnDestroy {
 
     /** not called if i just reload this */
     ngOnDestroy(): void {
-        console.log('i got destroyed');
         this.destroy$.next(true);
-
         this.viewportReady$.complete();
         this.viewportUpdate$.complete();
         this.destroy$.complete();
-
         this.viewportModel = null;
     }
 

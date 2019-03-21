@@ -1,6 +1,18 @@
 
-// tslint:disable-next-line:max-line-length
-import { AfterViewInit, Component, ElementRef, Host, Inject, NgZone, OnDestroy, Renderer2, ViewChild, OnInit, Input, HostBinding, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    Host,
+    Inject,
+    NgZone,
+    OnDestroy,
+    Renderer2,
+    ViewChild,
+    OnInit,
+    Input,
+    HostBinding
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject, Observable } from 'rxjs';
 import { tap, takeUntil, switchMap, finalize } from 'rxjs/operators';

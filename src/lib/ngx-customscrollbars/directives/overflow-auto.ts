@@ -1,4 +1,4 @@
-import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Scrollbar } from '../api/scrollbar.interface';

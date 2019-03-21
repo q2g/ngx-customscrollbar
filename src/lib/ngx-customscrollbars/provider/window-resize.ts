@@ -1,7 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable, Subject, fromEvent, Subscription, OperatorFunction, of } from 'rxjs';
-import { debounceTime, throttleTime, debounce, tap } from 'rxjs/operators';
-import { animationFrame } from 'rxjs/internal/scheduler/animationFrame';
+import { Observable, Subject, fromEvent, Subscription, OperatorFunction } from 'rxjs';
 
 /**
  *
