@@ -1,16 +1,21 @@
-@import '../scss/mixins/disable-user-selection.mixin';
 @import '../scss/mixins/flexbox.mixin';
 
 :host {
 
+    /** disable user selections */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   /** disable user selections with mouse */
-  @include disableUserSelection;
   @include flexbox;
 
   /** vertical scrollbar */
   &.vertical {
     @include flex-direction(column);
-
     .scrollbar-thumb {
         width: 100%;
     }
@@ -19,7 +24,6 @@
   /** horizontal scrollbar */
   &.horizontal {
     @include flex-direction(row);
-
     .scrollbar-thumb {
         height: 100%;
     }

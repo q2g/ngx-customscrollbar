@@ -5,9 +5,9 @@
 @mixin ngxCustomScrollbars($theme: null) {
     $themeSettings: $defaultSettings;
     @if ($theme) {
-        $themeSettings: $theme;
+        $themeSettings: map-merge($themeSettings, $theme);
     }
     @include scrollbarsTheme($themeSettings);
 };
-// @include ngxCustomScrollbars($mySettings);
+
 @include ngxCustomScrollbars();
