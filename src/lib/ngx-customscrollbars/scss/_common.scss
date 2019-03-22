@@ -1,4 +1,3 @@
-/** hide native scrollbars on every html element which includes ngxCustomScrollbarScrollable directive */
 [ngxCustomScrollbarScrollable] {
   /** disable scrollbar design global */
   -ms-overflow-style: none;

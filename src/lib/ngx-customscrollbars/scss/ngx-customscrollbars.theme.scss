@@ -1,13 +1,13 @@
-@import './main';
-@import './scrollbars';
 @import './settings';
+@import './scrollbars.theme';
 
-@mixin ngxCustomScrollbars($theme: null) {
+@mixin ngxCustomScrollbarsTheme($theme: null) {
+
     $themeSettings: $defaultSettings;
     @if ($theme) {
         $themeSettings: map-merge($themeSettings, $theme);
     }
+
+    @debug ($themeSettings);
     @include scrollbarsTheme($themeSettings);
 };
-
-@include ngxCustomScrollbars();

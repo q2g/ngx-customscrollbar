@@ -1,4 +1,4 @@
-@import '../../../dist/ngx-customscrollbars/scss/ngx-customscrollbars';
+@import '../../../dist/ngx-customscrollbars/scss/ngx-customscrollbars.theme';
 
 :host {
 
@@ -22,6 +22,6 @@
       trackBackground: green
     );
 
-    @include ngxCustomScrollbars($theme);
+    @include ngxCustomScrollbarsTheme($theme);
   }
 }

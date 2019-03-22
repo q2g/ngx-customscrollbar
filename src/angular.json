@@ -23,7 +23,6 @@
               "examples/src/assets"
             ],
             "styles": [
-              "dist/ngx-customscrollbars/scss/ngx-customscrollbars.scss",
               "examples/styles.scss"
             ],
             "scripts": []
