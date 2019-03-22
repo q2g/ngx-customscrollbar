@@ -1,0 +1,13 @@
+@import './main';
+@import './scrollbars';
+@import './settings';
+
+@mixin ngxCustomScrollbars($theme: null) {
+    $themeSettings: $defaultSettings;
+    @if ($theme) {
+        $themeSettings: $theme;
+    }
+    @include scrollbarsTheme($themeSettings);
+};
+// @include ngxCustomScrollbars($mySettings);
+@include ngxCustomScrollbars();

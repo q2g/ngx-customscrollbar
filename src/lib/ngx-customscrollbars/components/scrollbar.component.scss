@@ -1,5 +1,5 @@
-@import '../skin/scss/mixins/disable-user-selection.mixin';
-@import '../skin/scss/mixins/flexbox.mixin';
+@import '../scss/mixins/disable-user-selection.mixin';
+@import '../scss/mixins/flexbox.mixin';
 
 :host {
 
@@ -7,25 +7,25 @@
   @include disableUserSelection;
   @include flexbox;
 
-  /** horizontal scrollbar */
-  &.horizontal {
-    @include flex-direction(row);
-    height: 20px;
-  }
-
   /** vertical scrollbar */
   &.vertical {
     @include flex-direction(column);
-    width: 20px;
+
+    .scrollbar-thumb {
+        width: 100%;
+    }
+  }
+
+  /** horizontal scrollbar */
+  &.horizontal {
+    @include flex-direction(row);
+
+    .scrollbar-thumb {
+        height: 100%;
+    }
   }
 
   .scrollbar-track {
     @include flex(1);
-    background: red;
-  }
-
-  .scrollbar-thumb {
-    background: orangered;
-    height: 100%;
   }
 }

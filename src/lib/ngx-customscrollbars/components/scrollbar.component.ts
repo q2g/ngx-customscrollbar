@@ -11,7 +11,8 @@ import {
     ViewChild,
     OnInit,
     Input,
-    HostBinding
+    HostBinding,
+    ViewEncapsulation
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject, Observable } from 'rxjs';
@@ -24,12 +25,13 @@ import { ScrollHelper, HorizontalScrollHelper, VerticalScrollHelper, ViewportCon
 @Component({
     selector: 'ngx-customscrollbar',
     templateUrl: 'scrollbar.component.html',
-    styleUrls: ['./scrollbar.component.scss']
+    styleUrls: ['./scrollbar.component.scss'],
 })
 export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, OnInit {
 
     @Input()
     @HostBinding('class')
+    @HostBinding('class.ngx-customscrollbars')
     public scrollDirection = Scrollbar.DIRECTION.Y;
 
     @ViewChild('scrollbarTrack')
@@ -57,6 +59,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * initialize scrollbar track and scrollbar thumb events
      */
     ngOnInit() {
+
         this.ngZone.runOutsideAngular(() => {
             this.registerThumbEvents()
                 .pipe(takeUntil(this.isDestroyed$))
