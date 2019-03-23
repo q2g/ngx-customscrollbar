@@ -1,0 +1,27 @@
+@import '../../../dist/ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+
+:host {
+
+  .scrollWrapper {
+
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    overflow: hidden;
+
+    .scrollView {
+      flex: 1;
+      overflow-y: auto;
+    }
+  }
+
+  ::ng-deep {
+
+    $theme: (
+      thumbBackground: orange,
+      trackBackground: green
+    );
+
+    @include ngxCustomScrollbarsTheme($theme);
+  }
+}

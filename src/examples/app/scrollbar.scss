@@ -1,0 +1,8 @@
+@import '../../dist/ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+
+:host {
+
+  ::ng-deep {
+    @include ngxCustomScrollbarsTheme();
+  }
+}

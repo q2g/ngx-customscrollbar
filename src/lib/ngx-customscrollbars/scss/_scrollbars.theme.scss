@@ -1,0 +1,33 @@
+@mixin scrollbarsTheme($settings) {
+
+  /** general scrollbar settings */
+  .ngx-customscrollbars {
+
+    >* {
+      box-sizing: border-box;
+    }
+
+    .scrollbar-thumb {
+      border-radius: map-get($settings, thumbBorderRadius);
+      background: map-get($settings, thumbBackground);
+    }
+
+    .scrollbar-track {
+      background: map-get($settings, trackBackground);
+    }
+  }
+
+  /** vertical scrollbars */
+  .ngx-customscrollbars.vertical {
+    .scrollbar-track {
+      width: map-get($settings, trackSize);
+    }
+  }
+
+  /** horizontal scrollbars */
+  .ngx-customscrollbars.horizontal {
+    .scrollbar-track {
+      height: map-get($settings, trackSize);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+
+  .scrollWrapper {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  table {
+    width: 100%;
+  }
+}
