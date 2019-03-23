@@ -1,8 +1,6 @@
 import { Directive, NgZone, Host, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ViewportControl } from '../provider/viewport.control';
-import { DomHelper } from '../helper/dom.helper';
 import { HtmlViewport } from '../viewport/html.viewport';
-import { DomMutationWatcher, IDomWatcher, TextAreaWatcher } from '../watcher';
 
 /**
  * directive for html elements
@@ -11,11 +9,11 @@ import { DomMutationWatcher, IDomWatcher, TextAreaWatcher } from '../watcher';
  */
 @Directive({
     selector: '[ngxCustomScrollbarScrollable]',
+    exportAs: 'ngxCustomScrollbarHTMLViewport'
 })
 export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnDestroy {
 
     private htmlViewport: HtmlViewport;
-    private watcher: IDomWatcher;
 
     constructor(
         @Host() private viewportControl: ViewportControl,
@@ -31,10 +29,7 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnD
      */
     ngOnDestroy() {
         this.htmlViewport.destroy();
-        this.watcher.disconnect();
-
         this.viewportControl = null;
-        this.watcher = null;
     }
 
     /**
@@ -46,16 +41,7 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnD
      * @memberof ScrollableContainerDirective
      */
     ngAfterViewInit(): void {
-        this.htmlViewport = new HtmlViewport(this.zone);
-        this.htmlViewport.element = this.el.nativeElement;
+        this.htmlViewport = new HtmlViewport(this.zone, this.el.nativeElement);
         this.viewportControl.viewPort = this.htmlViewport;
-
-        if (this.el.nativeElement.tagName === 'TEXTAREA') {
-            this.watcher = new TextAreaWatcher(this.viewportControl);
-        } else {
-            this.watcher = new DomMutationWatcher(this.viewportControl);
-        }
-
-        this.watcher.connect(this.el.nativeElement);
     }
 }

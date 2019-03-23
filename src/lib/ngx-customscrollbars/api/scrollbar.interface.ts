@@ -13,9 +13,15 @@ export namespace Scrollbar {
             top: number;
         };
 
+        /** scrollbar has been bound to viewport control */
+        init();
+
         measureSize(): DomHelper.IScrollContainerMeasure;
+
         reset(): void;
+
         scrollTo(offset: IOffset): void;
+
         onScrolled(): Observable<void>;
     }
 

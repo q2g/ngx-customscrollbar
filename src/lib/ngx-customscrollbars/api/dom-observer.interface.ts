@@ -2,7 +2,7 @@
  * watches dom for changes and notifiy
  * viewport control to update
  */
-export interface IDomWatcher {
+export interface IDomObserver {
 
     connect(el: HTMLElement);
 

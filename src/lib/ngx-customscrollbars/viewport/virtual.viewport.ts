@@ -9,6 +9,9 @@ export class VirtualViewport extends Viewport {
 
     private measureOffset: DomHelper.IScrollContainerMeasure;
 
+    init() {
+    }
+
     public constructor() {
         super();
 

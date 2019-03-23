@@ -1,22 +1,21 @@
-import { Subject, fromEvent, Observable } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import { animationFrame } from 'rxjs/internal/scheduler/animationFrame';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { ViewportControl } from '../provider/viewport.control';
-import { IDomWatcher } from './dom.watcher.interface';
+import { IDomObserver, IViewportControl } from '../../api';
 
 /**
  * watches a textarea field for input changes
  * and notfiy viewportcontrol to update
  */
-export class TextAreaWatcher implements IDomWatcher {
+export class InputObserver implements IDomObserver {
 
     private destroyed$: Subject<boolean> = new Subject();
 
     public constructor(
-        private viewportControl: ViewportControl
+        private viewportControl: IViewportControl
     ) { }
 
-    connect(el: HTMLTextAreaElement): void {
+    connect(el: HTMLInputElement): void {
         fromEvent(el, 'input').pipe(
             debounceTime(0, animationFrame),
             takeUntil(this.destroyed$)

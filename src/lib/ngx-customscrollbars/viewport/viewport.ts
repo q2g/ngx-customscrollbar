@@ -19,6 +19,8 @@ export abstract class Viewport implements Scrollbar.IScrollbarViewport {
 
     public destroy() { /* noop */ }
 
+    public init() { /** noop */ }
+
     public set control(control: IViewportControl) {
         this.viewPortController = control;
     }

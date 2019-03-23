@@ -60,9 +60,10 @@ export class ViewportControl implements OnDestroy {
             });
 
         this.scrollbarViewPort.control = this;
+        this.scrollbarViewPort.init();
 
         /** create new viewport model if a viewport has been bound */
-        this.viewportModel = new ScrollContainerMeasureModel(viewPort.measureSize());
+        this.viewportModel = new ScrollContainerMeasureModel(this.scrollbarViewPort.measureSize());
         this.viewportReady$.next(this.viewportModel);
     }
 

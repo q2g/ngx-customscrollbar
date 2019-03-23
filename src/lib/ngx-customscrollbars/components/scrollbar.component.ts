@@ -11,8 +11,7 @@ import {
     ViewChild,
     OnInit,
     Input,
-    HostBinding,
-    ViewEncapsulation
+    HostBinding
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject, Observable } from 'rxjs';
