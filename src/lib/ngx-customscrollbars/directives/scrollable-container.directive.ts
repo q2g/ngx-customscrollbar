@@ -1,8 +1,8 @@
-import { Directive, NgZone, Host, ElementRef, OnDestroy, AfterViewInit, Component } from '@angular/core';
+import { Directive, NgZone, Host, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ViewportControl } from '../provider/viewport.control';
 import { DomHelper } from '../helper/dom.helper';
 import { HtmlViewport } from '../viewport/html.viewport';
-import { ViewEncapsulation } from '@angular/compiler/src/core';
+import { DomMutationWatcher, IDomWatcher, TextAreaWatcher } from '../watcher';
 
 /**
  * directive for html elements
@@ -15,8 +15,7 @@ import { ViewEncapsulation } from '@angular/compiler/src/core';
 export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnDestroy {
 
     private htmlViewport: HtmlViewport;
-    private domMutations: MutationObserver;
-    private dimension: DomHelper.IScrollContainerMeasure;
+    private watcher: IDomWatcher;
 
     constructor(
         @Host() private viewportControl: ViewportControl,
@@ -32,8 +31,10 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnD
      */
     ngOnDestroy() {
         this.htmlViewport.destroy();
-        this.domMutations.disconnect();
+        this.watcher.disconnect();
+
         this.viewportControl = null;
+        this.watcher = null;
     }
 
     /**
@@ -48,49 +49,13 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnD
         this.htmlViewport = new HtmlViewport(this.zone);
         this.htmlViewport.element = this.el.nativeElement;
         this.viewportControl.viewPort = this.htmlViewport;
-        this.dimension = this.viewportControl.viewportDimension;
 
-        this.watchDom();
-    }
+        if (this.el.nativeElement.tagName === 'TEXTAREA') {
+            this.watcher = new TextAreaWatcher(this.viewportControl);
+        } else {
+            this.watcher = new DomMutationWatcher(this.viewportControl);
+        }
 
-    /**
-     * watch dom for changes in child list,  if something has been changed
-     * we update scrollbars
-     */
-    private watchDom() {
-
-        this.domMutations = new MutationObserver((mutations: MutationRecord[]) => {
-            if (this.requireUpdate()) {
-                this.viewportControl.update();
-            }
-        });
-
-        this.domMutations.observe(this.el.nativeElement, {
-            attributes: true,
-            attributeFilter: ['style'],
-            characterData: true,
-            childList: true,
-            subtree: true,
-        });
-    }
-
-    /**
-     * check for changes we have to react for since this changes the
-     * height of the scrollContainer
-     */
-    private requireUpdate(): boolean {
-
-        const newDimensions = DomHelper.getScrollContainerMeasure(this.el.nativeElement);
-
-        let needsUpdate = true;
-        needsUpdate = this.dimension.height !== newDimensions.height;
-        needsUpdate = needsUpdate || this.dimension.width !== newDimensions.width;
-        needsUpdate = needsUpdate || this.dimension.scrollHeight !== newDimensions.scrollHeight;
-        needsUpdate = needsUpdate || this.dimension.scrollWidth !== newDimensions.scrollWidth;
-
-        /** write new dimensions */
-        this.dimension = newDimensions;
-
-        return needsUpdate;
+        this.watcher.connect(this.el.nativeElement);
     }
 }
