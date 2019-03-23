@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "demo": "ng build ngx-customscrollbars && npm start",
-    "publish": "ng build ngx-customscrollbars && npm run copy:scss",
+    "build:pkg": "ng build ngx-customscrollbars && npm run copy:scss",
     "copy:scss": "cpx lib/ngx-customscrollbars/scss/**/*.scss dist/ngx-customscrollbars/scss",
     "start": "ng serve",
     "build": "ng build",
