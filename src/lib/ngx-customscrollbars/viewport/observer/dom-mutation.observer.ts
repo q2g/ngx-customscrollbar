@@ -14,6 +14,7 @@ export class DomMutationObserver implements IDomObserver {
     ) { }
 
     connect(el: HTMLElement): void {
+
         this.mutationObserver = new MutationObserver((m) => {
             this.viewportControl.update();
         });

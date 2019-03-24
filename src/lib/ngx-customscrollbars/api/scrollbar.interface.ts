@@ -39,8 +39,8 @@ export namespace Scrollbar {
 
     export const enum VIEWPORT_EVENT {
         INITIALIZED = 'viewport_initialized',
-        SCROLLED = 'viewport_scrolled',
-        UPDATE = 'viewport_update'
+        SCROLLED    = 'viewport_scrolled',
+        UPDATE      = 'viewport_update'
     }
 
     export const enum DIRECTION {

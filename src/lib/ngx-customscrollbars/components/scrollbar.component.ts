@@ -72,15 +72,18 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * dom is rendered and initialized
      */
     ngAfterViewInit() {
+
+        this.viewportController.addScrollbar(this);
+
         /** viewport has been attached */
         this.viewportController.onLoad()
             .pipe(takeUntil(this.isDestroyed$))
             .subscribe((measure) => this.handleViewportLoaded(measure));
 
         /** viewport has been updated in size or is scrolled */
-        this.viewportController.onUpdate()
+        this.viewportController.onScroll()
             .pipe(takeUntil(this.isDestroyed$))
-            .subscribe((event) => this.handleViewportUpdate(event));
+            .subscribe((event) => this.handleViewportScroll(event));
     }
 
     /**
@@ -89,6 +92,9 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * from all streams
      */
     ngOnDestroy() {
+
+        this.viewportController.removeScrollbar(this);
+
         this.isDestroyed$.next(true);
         this.isDestroyed$.complete();
 
@@ -96,6 +102,18 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
         this.thumbMeasure = null;
         this.trackMeasure = null;
         this.viewportMeasure = null;
+    }
+
+    public render() {
+        const thumb = this.scrollbarThumb.nativeElement;
+        const track = this.scrollbarTrack.nativeElement;
+
+        this.renderer.setStyle(thumb, 'display', 'none');
+        this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
+        this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
+
+        this.renderScrollbarThumb();
+        this.moveThumbToPosition();
     }
 
     /**
@@ -117,24 +135,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * viewportControl sends update, this could be
      * initialized, scrolled or content changes
      */
-    private handleViewportUpdate(event) {
+    private handleViewportScroll(event: Scrollbar.ScrollEvent) {
 
-        switch (event.type) {
-            /** viewport has been updated in size / width */
-            case Scrollbar.VIEWPORT_EVENT.UPDATE:
-                const thumb = this.scrollbarThumb.nativeElement;
-                const track = this.scrollbarTrack.nativeElement;
-
-                this.renderer.setStyle(thumb, 'display', 'none');
-                this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
-                this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
-
-                break;
-            /** viewport has been scrolled for a specific amount */
-            default:
-                if (this.scrollHelper.couldSkipScrollEvent(this.scrollDirection, event)) {
-                    return;
-                }
+        if (this.scrollHelper.couldSkipScrollEvent(this.scrollDirection, event)) {
+            return;
         }
 
         this.renderScrollbarThumb();
