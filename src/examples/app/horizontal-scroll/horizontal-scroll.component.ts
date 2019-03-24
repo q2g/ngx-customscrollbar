@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbars';
+import { Component } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbars";
 
 @Component({
-    selector: 'app-horizontal-scroll',
-    templateUrl: 'horizontal-scroll.component.html',
-    styleUrls: ['./horizontal-scroll.component.scss'],
+    selector: "app-horizontal-scroll",
+    templateUrl: "horizontal-scroll.component.html",
+    styleUrls: ["./horizontal-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class HorizontalScrollComponent {

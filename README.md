@@ -40,7 +40,7 @@ npm i --save ngx-customscrollbar
 Import `NgxCustomScrollbarModule` in your module
 
 ```js
-import { NgxCustomScrollbarModule } from 'ngx-customscrollbar';
+import { NgxCustomScrollbarModule } from "ngx-customscrollbar";
 
 @NgModule({
   imports: [
@@ -54,13 +54,13 @@ import { NgxCustomScrollbarModule } from 'ngx-customscrollbar';
 
 Component
 ```ts
-import { Component } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbar';
+import { Component } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbar";
 
 @Component({
-    selector: 'app-vertical-scroll',
-    templateUrl: 'vertical-scroll.component.html',
-    styleUrls: ['./vertical-scroll.component.scss'],
+    selector: "app-vertical-scroll",
+    templateUrl: "vertical-scroll.component.html",
+    styleUrls: ["./vertical-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent {
@@ -82,8 +82,8 @@ Template
 
 SCSS
 ```scss
-@import '~ngx-customscrollbar/scss/common';
-@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme'
+@import "~ngx-customscrollbar/scss/common";
+@import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
 
 .scrollWrapper {
 
@@ -105,14 +105,14 @@ SCSS
 
 Component
 ```ts
-import { Component } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbar';
+import { Component } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbar";
 
 
 @Component({
-    selector: 'app-vertical-scroll',
-    templateUrl: 'vertical-scroll.component.html',
-    styleUrls: ['./vertical-scroll.component.scss'],
+    selector: "app-vertical-scroll",
+    templateUrl: "vertical-scroll.component.html",
+    styleUrls: ["./vertical-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent {
@@ -133,8 +133,8 @@ Template
 
 SCSS
 ```scss
-@import '~ngx-customscrollbar/scss/common';
-@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme'
+@import "~ngx-customscrollbar/scss/common";
+@import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
 
 .scrollWrapper {
   // load scrollbars theme here

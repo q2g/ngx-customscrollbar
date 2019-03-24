@@ -1,10 +1,10 @@
-import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { switchMap, tap, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Scrollbar } from '../api/scrollbar.interface';
-import { DomHelper } from '../helper/dom.helper';
-import { Overflow } from '../model/overflow';
-import { ViewportControl } from '../provider/viewport.control';
+import { ViewContainerRef, TemplateRef, Host, DoCheck, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
+import { switchMap, tap, takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { Scrollbar } from "../api/scrollbar.interface";
+import { DomHelper } from "../helper/dom.helper";
+import { Overflow } from "../model/overflow";
+import { ViewportControl } from "../provider/viewport.control";
 
 /**
  * remove component if we dont need to scroll anymore, and

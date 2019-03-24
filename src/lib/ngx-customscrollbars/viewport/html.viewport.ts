@@ -1,11 +1,11 @@
-import { NgZone } from '@angular/core';
-import { supportsScrollBehavior } from '@angular/cdk/platform';
-import { fromEvent, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Scrollbar, IDomObserver } from '../api';
-import { DomHelper } from '../helper/dom.helper';
-import { InputObserver, DomMutationObserver } from './observer';
-import { Viewport } from './viewport';
+import { NgZone } from "@angular/core";
+import { supportsScrollBehavior } from "@angular/cdk/platform";
+import { fromEvent, Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { Scrollbar, IDomObserver } from "../api";
+import { DomHelper } from "../helper/dom.helper";
+import { InputObserver, DomMutationObserver } from "./observer";
+import { Viewport } from "./viewport";
 
 export class HtmlViewport extends Viewport {
 
@@ -35,7 +35,7 @@ export class HtmlViewport extends Viewport {
 
     /** element is bound to viewport */
     public init() {
-        this.scroll$ = fromEvent(this.element, 'scroll')
+        this.scroll$ = fromEvent(this.element, "scroll")
             .pipe(takeUntil(this.destroy$));
 
         this.registerChangeObserver();
@@ -98,7 +98,7 @@ export class HtmlViewport extends Viewport {
      * register change observer for html viewport
      */
     private registerChangeObserver() {
-        if (this.element.tagName.toLowerCase() === 'textarea') {
+        if (this.element.tagName.toLowerCase() === "textarea") {
             this.changeObserver = new InputObserver(this.control);
         } else {
             this.changeObserver = new DomMutationObserver(this.control);

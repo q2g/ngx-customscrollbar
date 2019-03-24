@@ -1,7 +1,7 @@
-import { Subject, fromEvent } from 'rxjs';
-import { animationFrame } from 'rxjs/internal/scheduler/animationFrame';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { IDomObserver, IViewportControl } from '../../api';
+import { Subject, fromEvent } from "rxjs";
+import { animationFrame } from "rxjs/internal/scheduler/animationFrame";
+import { debounceTime, takeUntil } from "rxjs/operators";
+import { IDomObserver, IViewportControl } from "../../api";
 
 /**
  * watches a textarea field for input changes
@@ -16,7 +16,7 @@ export class InputObserver implements IDomObserver {
     ) { }
 
     connect(el: HTMLInputElement): void {
-        fromEvent(el, 'input').pipe(
+        fromEvent(el, "input").pipe(
             debounceTime(0, animationFrame),
             takeUntil(this.destroyed$)
         ).subscribe(() => this.viewportControl.update());

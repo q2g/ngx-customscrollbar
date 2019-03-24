@@ -1,6 +1,6 @@
-import { Directive, NgZone, Host, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { ViewportControl } from '../provider/viewport.control';
-import { HtmlViewport } from '../viewport/html.viewport';
+import { Directive, NgZone, Host, ElementRef, OnDestroy, AfterViewInit } from "@angular/core";
+import { ViewportControl } from "../provider/viewport.control";
+import { HtmlViewport } from "../viewport/html.viewport";
 
 /**
  * directive for html elements
@@ -8,8 +8,8 @@ import { HtmlViewport } from '../viewport/html.viewport';
  * react on dom changes and updates scrollbar
  */
 @Directive({
-    selector: '[ngxCustomScrollbarScrollable]',
-    exportAs: 'ngxCustomScrollbarHTMLViewport'
+    selector: "[ngxCustomScrollbarScrollable]",
+    exportAs: "ngxCustomScrollbarHTMLViewport"
 })
 export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, OnDestroy {
 

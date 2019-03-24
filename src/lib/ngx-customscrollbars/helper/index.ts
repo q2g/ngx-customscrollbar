@@ -1,2 +1,2 @@
-export * from './import-data.decorator';
-export * from './dom.helper';
+export * from "./import-data.decorator";
+export * from "./dom.helper";

@@ -1,7 +1,7 @@
 
-import { Viewport } from './viewport';
-import { DomHelper } from '../helper/dom.helper';
-import { Scrollbar } from '../api/scrollbar.interface';
+import { Viewport } from "./viewport";
+import { DomHelper } from "../helper/dom.helper";
+import { Scrollbar } from "../api/scrollbar.interface";
 
 export class VirtualViewport extends Viewport {
 

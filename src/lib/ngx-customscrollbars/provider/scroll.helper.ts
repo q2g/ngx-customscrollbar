@@ -1,5 +1,5 @@
-import { Scrollbar } from '../api/scrollbar.interface';
-import { DomHelper } from '../helper/dom.helper';
+import { Scrollbar } from "../api/scrollbar.interface";
+import { DomHelper } from "../helper/dom.helper";
 
 export abstract class ScrollHelper {
 

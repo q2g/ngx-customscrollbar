@@ -1,11 +1,11 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { Scrollbar } from '../api/scrollbar.interface';
-import { WindowResize } from './window-resize';
-import { DomHelper } from '../helper/dom.helper';
-import { ScrollContainerMeasureModel } from '../model/scroll-container-measure.model';
-import { NgxCustomScrollbarComponent } from '../components/scrollbar.component';
+import { Injectable, OnDestroy } from "@angular/core";
+import { Observable, ReplaySubject, Subject, Subscription } from "rxjs";
+import { takeUntil } from "rxjs/internal/operators/takeUntil";
+import { Scrollbar } from "../api/scrollbar.interface";
+import { WindowResize } from "./window-resize";
+import { DomHelper } from "../helper/dom.helper";
+import { ScrollContainerMeasureModel } from "../model/scroll-container-measure.model";
+import { NgxCustomScrollbarComponent } from "../components/scrollbar.component";
 
 /**
  * viewport contol service, the glue between scrollbars and the viewport

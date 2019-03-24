@@ -1,5 +1,5 @@
-import { ScrollHelper } from './scroll.helper';
-import { Scrollbar } from '../api/scrollbar.interface';
+import { ScrollHelper } from "./scroll.helper";
+import { Scrollbar } from "../api/scrollbar.interface";
 
 /**
  * helper for calculations on vertical scrollbars
@@ -44,14 +44,14 @@ export class HorizontalScrollHelper extends ScrollHelper {
         const left = this.calculateThumbPosition();
 
         return {
-            style: 'transform',
+            style: "transform",
             value: `translate3d(${left}px, 0, 0)`
         };
     }
 
     public getScrollThumbCssSize() {
         const width = this.calculateThumbSize();
-        return { style: 'width', value: `${width}px` };
+        return { style: "width", value: `${width}px` };
     }
 
     public isScrollable(): boolean {

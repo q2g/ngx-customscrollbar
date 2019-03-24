@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbars';
+import { Component, OnInit } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbars";
 
 @Component({
-    selector: 'app-vertical-scroll',
-    templateUrl: 'vertical-scroll.component.html',
-    styleUrls: ['./vertical-scroll.component.scss'],
+    selector: "app-vertical-scroll",
+    templateUrl: "vertical-scroll.component.html",
+    styleUrls: ["./vertical-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent implements OnInit {

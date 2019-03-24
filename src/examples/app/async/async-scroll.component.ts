@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbars';
-import { delay } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbars";
+import { delay } from "rxjs/operators";
+import { of, Observable } from "rxjs";
 
 @Component({
-    selector: 'app-horizontal-scroll',
-    templateUrl: 'async-scroll.component.html',
-    styleUrls: ['./async-scroll.component.scss'],
+    selector: "app-horizontal-scroll",
+    templateUrl: "async-scroll.component.html",
+    styleUrls: ["./async-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class AsyncScrollComponent implements OnInit {

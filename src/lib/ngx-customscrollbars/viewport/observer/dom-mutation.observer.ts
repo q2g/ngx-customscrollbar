@@ -1,5 +1,5 @@
 
-import { IDomObserver, IViewportControl } from '../../api';
+import { IDomObserver, IViewportControl } from "../../api";
 
 /**
  * watches dom for mutations, something has been added or removed
@@ -21,7 +21,7 @@ export class DomMutationObserver implements IDomObserver {
 
         this.mutationObserver.observe(el, {
             attributes: true,
-            attributeFilter: ['style'],
+            attributeFilter: ["style"],
             characterData: true,
             childList: true,
             subtree: true,
