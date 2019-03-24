@@ -17,6 +17,7 @@ structural directive, controls visibility of scrollbar like css property overflo
 values are **none**, **scroll** or **auto**. Default value is **auto**. If **none** is set container will not be scrollable anymore.
 
 @example
+
 ```html
 <ngx-customscrollbar *ngxCustomScrollbarOverflowY="'scroll'">
 </ngx-customscrollbar>
@@ -29,6 +30,7 @@ values are **none**, **scroll** or **auto**. Default value is **auto**
 If **none** is set container will not be scrollable anymore.
 
 @example
+
 ```html
 <ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowX="'scroll'">
 </ngx-customscrollbar>

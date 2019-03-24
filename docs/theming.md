@@ -1,7 +1,8 @@
 # Theming Ngx-Customscrollbars
 
 ## Requirements
-By default it seems not to be possible to load all stylings which are required, like hide native scrollbars or disable user selections through the library or even directives. 
+
+By default it seems not to be possible to load all stylings which are required, like hide native scrollbars or disable user selections through the library or even directives.
 
 As example if we want to use scrollbars on a html element like  table, textarea or cdk virtual scroll we add directive **ngxCustomScrollbarsScrollable** to create a dom scrollviewport but to hide native scrollbars we need to add some css values.
 
@@ -19,11 +20,13 @@ As example if we want to use scrollbars on a html element like  table, textarea 
 to solve that issue u dont need to do that it is recommended to use common styles from ngx-customscrollbars which hides all native scrollbars on components which should have a customscrollbar. Just add to your main.scss file (or any other scss file u load).
 
 main.scss
+
 ```scss
 @import '~ngx-customscrollbar/scss/common';
 ```
 
 ## Theming
+
 by default these variables can be used to customize scrollbars, as example u could load global theme even in your main.scss just importing the theme mixin and apply your styles to arguments.
 
 ### Global
@@ -36,6 +39,7 @@ to define a global theme for all scrollbars on page, will be mostly the case imp
 ```
 
 ### Custom component
+
 usefull if u want other colors / scrollbar dimension in specific component.
 
 ```ts
@@ -115,6 +119,7 @@ $yellowScrollbars: (
 ```
 
 results in the same as
+
 ```scss
 @import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 

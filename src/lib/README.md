@@ -1,6 +1,4 @@
-<p align="center">
-  <h1 align="center">Q2g - Ngx Custom Scrollbars</h1>
-</p>
+# Ngx-CustomScrollbars
 
 [![CodeFactor](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar/badge)](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/v/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
@@ -14,26 +12,23 @@ ___
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Vertical Scrollbar](#vertical-scrollbar)
-- [Horizontal Scrollbar](#horizontal-scrollbar)
-- [Docs](#docs)
-- [Author](#author)
-- [Credit](#credit)
-
-<a name="installation"/>
+- [Ngx-CustomScrollbars](#ngx-customscrollbars)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Vertical Scrollbar](#vertical-scrollbar)
+  - [Horizontal Scrollbar](#horizontal-scrollbar)
+  - [Docs](#docs)
+  - [Author](#author)
+  - [Credit](#credit)
 
 ## Installation
 
-**NPM**
+npm
 
 ```bash
 npm i --save ngx-customscrollbar
 ```
-
-<a name="usage"/>
 
 ## Usage
 
@@ -53,6 +48,7 @@ import { NgxCustomScrollbarModule } from "ngx-customscrollbar";
 ## Vertical Scrollbar
 
 Component
+
 ```ts
 import { Component } from "@angular/core";
 import { ViewportControl } from "ngx-customscrollbar";
@@ -65,12 +61,13 @@ import { ViewportControl } from "ngx-customscrollbar";
 })
 export class VerticalScrollComponent {
     // generate array with 300 items
-    public items: Array<string | number> = 
+    public items: Array<string | number> =
         Array.from({ length: 300 }, (val, index) => index);
 }
 ```
 
 Template
+
 ```html
 <div class="scrollWrapper">
   <div class="scrollView" ngxCustomScrollbarScrollable>
@@ -81,6 +78,7 @@ Template
 ```
 
 SCSS
+
 ```scss
 @import "~ngx-customscrollbar/scss/common";
 @import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
@@ -104,6 +102,7 @@ SCSS
 ## Horizontal Scrollbar
 
 Component
+
 ```ts
 import { Component } from "@angular/core";
 import { ViewportControl } from "ngx-customscrollbar";
@@ -116,12 +115,13 @@ import { ViewportControl } from "ngx-customscrollbar";
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent {
-    public items: Array<string | number> = 
+    public items: Array<string | number> =
         Array.from({ length: 20 }, (val, index) => index);
 }
 ```
 
 Template
+
 ```html
 <div class="scrollWrapper">
   <div class="scrollView" ngxCustomScrollbarScrollable>
@@ -132,6 +132,7 @@ Template
 ```
 
 SCSS
+
 ```scss
 @import "~ngx-customscrollbar/scss/common";
 @import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
@@ -163,19 +164,14 @@ SCSS
 }
 ```
 
-<a name="further-reading" />
-
 ## Docs
 
-- [Theming](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/theming.md)
-- [Directives](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/directives.md)
-
-<a name="author"/>
+-[Theming](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/theming.md)  
+-[Directives](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/directives.md)  
 
 ## Author
-Q2g - Ralf Hannuschka [Github](https://github.com/q2g)
 
-<a name="credit"/>
+Q2g - Ralf Hannuschka [Github](https://github.com/q2g)
 
 ## Credit
 
