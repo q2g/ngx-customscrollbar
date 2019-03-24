@@ -16,6 +16,9 @@ export namespace Scrollbar {
         /** scrollbar has been bound to viewport control */
         init();
 
+        /** destroy viewport */
+        destroy();
+
         measureSize(): DomHelper.IScrollContainerMeasure;
 
         reset(): void;

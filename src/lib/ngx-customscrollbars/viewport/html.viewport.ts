@@ -2,7 +2,7 @@ import { NgZone } from '@angular/core';
 import { supportsScrollBehavior } from '@angular/cdk/platform';
 import { fromEvent, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Scrollbar } from '../api/scrollbar.interface';
+import { Scrollbar, IDomObserver } from '../api';
 import { DomHelper } from '../helper/dom.helper';
 import { InputObserver, DomMutationObserver } from './observer';
 import { Viewport } from './viewport';
@@ -19,9 +19,11 @@ export class HtmlViewport extends Viewport {
      * mutation observer to detect changes on dom. For textareas we
      * will use input observer
      */
-    private changeObserver;
+    private changeObserver: IDomObserver;
 
     private destroy$: Subject<boolean>;
+
+    private isDestroyed = false;
 
     public constructor(
         private zone: NgZone,
@@ -41,8 +43,21 @@ export class HtmlViewport extends Viewport {
     }
 
     public destroy() {
+
+        /**
+         * component gets allready destroyed
+         * could happens twice if we create this with directive which destroys the viewport
+         * or we destroy the whole component which provides viewport control
+         */
+        if (this.isDestroyed) {
+            return;
+        }
+
+        this.changeObserver.disconnect();
         this.destroy$.next(true);
         this.destroy$.complete();
+        this.changeObserver = null;
+        this.isDestroyed = true;
     }
 
     /**
@@ -101,7 +116,7 @@ export class HtmlViewport extends Viewport {
                     this.scrolled$.next();
                     return;
                 }
-                this.scrollTo({left: 0, top: 0 });
+                this.scrollTo({ left: 0, top: 0 });
             });
         });
     }

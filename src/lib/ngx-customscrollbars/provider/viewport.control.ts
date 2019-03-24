@@ -60,11 +60,13 @@ export class ViewportControl implements OnDestroy {
             });
 
         this.scrollbarViewPort.control = this;
-        this.scrollbarViewPort.init();
+
 
         /** create new viewport model if a viewport has been bound */
         this.viewportModel = new ScrollContainerMeasureModel(this.scrollbarViewPort.measureSize());
         this.viewportReady$.next(this.viewportModel);
+
+        this.scrollbarViewPort.init();
     }
 
     public get viewportDimension(): DomHelper.IScrollContainerMeasure {
@@ -87,6 +89,8 @@ export class ViewportControl implements OnDestroy {
 
     /** not called if i just reload this */
     ngOnDestroy(): void {
+        this.scrollbarViewPort.destroy();
+
         this.destroy$.next(true);
         this.viewportReady$.complete();
         this.viewportUpdate$.complete();
