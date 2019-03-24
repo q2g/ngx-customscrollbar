@@ -20,7 +20,7 @@ to solve that issue u dont need to do that it is recommended to use common style
 
 main.scss
 ```scss
-@import '~ngx-customscrollbars/scss/common';
+@import '~ngx-customscrollbar/scss/common';
 ```
 
 ## Theming
@@ -31,7 +31,7 @@ by default these variables can be used to customize scrollbars, as example u cou
 to define a global theme for all scrollbars on page, will be mostly the case import **ngx-customscrollbars.theme** to your scss file and include the mixin **ngxCustomScrollbarsTheme()**
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 @include ngxCustomScrollbarsTheme();
 ```
 
@@ -48,7 +48,7 @@ export class AppComponent {}
 ```
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 :host {
   /** to make it work we need to use ng-deep */
@@ -90,7 +90,7 @@ $defaultSettings: (
 ### Custom theme settings
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $orangeScrollbars: (
     thumbBorderRadius: 5px,
@@ -105,7 +105,7 @@ $orangeScrollbars: (
 You dont need to pass all scrollbar settings, only which one u want to override, all supplied scrollbar settings will be merged with default settings.
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $yellowScrollbars: (
     thumbBackground: yellow,
@@ -116,7 +116,7 @@ $yellowScrollbars: (
 
 results in the same as
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $yellowScrollbars: (
     thumbBorderRadius: 4px,

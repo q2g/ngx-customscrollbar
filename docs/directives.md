@@ -1,6 +1,7 @@
 # Directives Ngx-Customscrollbars
 
-### ngxCustomScrollbarScrollable
+## ngxCustomScrollbarScrollable
+
 Wraps the html element into a HtmlScrollViewport and registered on ViewportControl. If Dom changes or element scrolls native, scrollbars will be updated.
 
 ```html
@@ -10,17 +11,19 @@ Wraps the html element into a HtmlScrollViewport and registered on ViewportContr
 <ngx-customscrollbar></ngx-customscrollbar>
 ```
 
-### ngxCustomScrollbarOverflowY
+## ngxCustomScrollbarOverflowY
+
 structural directive, controls visibility of scrollbar like css property overflow-x, possible
 values are **none**, **scroll** or **auto**. Default value is **auto**. If **none** is set container will not be scrollable anymore.
 
 @example
 ```html
-<ngx-customscrollbar [scrollDirection]="vertical" *ngxCustomScrollbarOverflowY="'scroll'">
+<ngx-customscrollbar *ngxCustomScrollbarOverflowY="'scroll'">
 </ngx-customscrollbar>
 ```
 
-### ngxCustomScrollbarOverflowX
+## ngxCustomScrollbarOverflowX
+
 structural directive, controls visibility of scrollbar like css property overflow-x, possible
 values are **none**, **scroll** or **auto**. Default value is **auto**
 If **none** is set container will not be scrollable anymore.
