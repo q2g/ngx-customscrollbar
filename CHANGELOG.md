@@ -5,7 +5,7 @@
 ### Bugfixes
 
 - fixed bug native textareas not scrollable fixes[#42] in [bd96cfd](https://github.com/q2g/ngx-customscrollbar/commit/bd96cfdce441b88fedae66cb40a20cbcfd948472)
-- fixd bug theming docs are wrong fixes[#44]
+- fixd bug theming docs are wrong fixes[#44] in [4801238](https://github.com/q2g/ngx-customscrollbar/commit/48012386f13a762af25b78e9644899f0748bed46)
 - fixed bug scrollbars calculated wrong if scrollbar added / removed fixes[#45] in [5493598](https://github.com/q2g/ngx-customscrollbar/commit/549359856272f42f0aa2c44cadfce74a877c4e0b)
 
 ## 1.2.0
