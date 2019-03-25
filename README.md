@@ -12,15 +12,13 @@ ___
 
 ## Table of Contents
 
-- [Ngx-CustomScrollbars](#ngx-customscrollbars)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Vertical Scrollbar](#vertical-scrollbar)
-  - [Horizontal Scrollbar](#horizontal-scrollbar)
-  - [Docs](#docs)
-  - [Author](#author)
-  - [Credit](#credit)
+-[Installation](#installation)  
+-[Usage](#usage)  
+-[Vertical Scrollbar](#vertical-scrollbar)  
+-[Horizontal Scrollbar](#horizontal-scrollbar)  
+-[Docs](#docs)  
+-[Author](#author)  
+-[Credit](#credit)  
 
 ## Installation
 
