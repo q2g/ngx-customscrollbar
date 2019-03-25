@@ -1,6 +1,6 @@
 
-import { DomHelper } from '../helper/dom.helper';
-import { importData } from '../helper';
+import { DomHelper } from "../helper/dom.helper";
+import { importData } from "../helper";
 
 /**
  * viewport model so save / share current state from viewport

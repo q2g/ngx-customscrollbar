@@ -1,7 +1,7 @@
-import { Scrollbar } from '../api/scrollbar.interface';
-import { Subject } from 'rxjs';
-import { DomHelper } from '../helper/dom.helper';
-import { IViewportControl } from '../api/viewport-control.interface';
+import { Scrollbar } from "../api/scrollbar.interface";
+import { Subject } from "rxjs";
+import { DomHelper } from "../helper/dom.helper";
+import { IViewportControl } from "../api/viewport-control.interface";
 
 export abstract class Viewport implements Scrollbar.IScrollbarViewport {
 
@@ -18,6 +18,8 @@ export abstract class Viewport implements Scrollbar.IScrollbarViewport {
     abstract scrollTo(offset: Scrollbar.IOffset);
 
     public destroy() { /* noop */ }
+
+    public init() { /** noop */ }
 
     public set control(control: IViewportControl) {
         this.viewPortController = control;

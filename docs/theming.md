@@ -1,7 +1,8 @@
 # Theming Ngx-Customscrollbars
 
 ## Requirements
-By default it seems not to be possible to load all stylings which are required, like hide native scrollbars or disable user selections through the library or even directives. 
+
+By default it seems not to be possible to load all stylings which are required, like hide native scrollbars or disable user selections through the library or even directives.
 
 As example if we want to use scrollbars on a html element like  table, textarea or cdk virtual scroll we add directive **ngxCustomScrollbarsScrollable** to create a dom scrollviewport but to hide native scrollbars we need to add some css values.
 
@@ -19,11 +20,13 @@ As example if we want to use scrollbars on a html element like  table, textarea 
 to solve that issue u dont need to do that it is recommended to use common styles from ngx-customscrollbars which hides all native scrollbars on components which should have a customscrollbar. Just add to your main.scss file (or any other scss file u load).
 
 main.scss
+
 ```scss
-@import '~ngx-customscrollbars/scss/common';
+@import '~ngx-customscrollbar/scss/common';
 ```
 
 ## Theming
+
 by default these variables can be used to customize scrollbars, as example u could load global theme even in your main.scss just importing the theme mixin and apply your styles to arguments.
 
 ### Global
@@ -31,11 +34,12 @@ by default these variables can be used to customize scrollbars, as example u cou
 to define a global theme for all scrollbars on page, will be mostly the case import **ngx-customscrollbars.theme** to your scss file and include the mixin **ngxCustomScrollbarsTheme()**
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 @include ngxCustomScrollbarsTheme();
 ```
 
 ### Custom component
+
 usefull if u want other colors / scrollbar dimension in specific component.
 
 ```ts
@@ -48,7 +52,7 @@ export class AppComponent {}
 ```
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 :host {
   /** to make it work we need to use ng-deep */
@@ -90,7 +94,7 @@ $defaultSettings: (
 ### Custom theme settings
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $orangeScrollbars: (
     thumbBorderRadius: 5px,
@@ -105,7 +109,7 @@ $orangeScrollbars: (
 You dont need to pass all scrollbar settings, only which one u want to override, all supplied scrollbar settings will be merged with default settings.
 
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $yellowScrollbars: (
     thumbBackground: yellow,
@@ -115,8 +119,9 @@ $yellowScrollbars: (
 ```
 
 results in the same as
+
 ```scss
-@import '~ngx-customscrollbars/scss/ngx-customscrollbars.theme';
+@import '~ngx-customscrollbar/scss/ngx-customscrollbars.theme';
 
 $yellowScrollbars: (
     thumbBorderRadius: 4px,

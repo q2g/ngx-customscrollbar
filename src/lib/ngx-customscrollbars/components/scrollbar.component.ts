@@ -1,4 +1,3 @@
-
 import {
     AfterViewInit,
     Component,
@@ -11,33 +10,32 @@ import {
     ViewChild,
     OnInit,
     Input,
-    HostBinding,
-    ViewEncapsulation
-} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { fromEvent, Subject, Observable } from 'rxjs';
-import { tap, takeUntil, switchMap, finalize } from 'rxjs/operators';
-import { Scrollbar } from '../api/scrollbar.interface';
-import { DomHelper } from '../helper/dom.helper';
-import { ContainerMeasureModel } from '../model/container-measure.model';
-import { ScrollHelper, HorizontalScrollHelper, VerticalScrollHelper, ViewportControl } from '../provider';
+    HostBinding
+} from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { fromEvent, Subject, Observable } from "rxjs";
+import { tap, takeUntil, switchMap, finalize } from "rxjs/operators";
+import { Scrollbar } from "../api/scrollbar.interface";
+import { DomHelper } from "../helper/dom.helper";
+import { ContainerMeasureModel } from "../model/container-measure.model";
+import { ScrollHelper, HorizontalScrollHelper, VerticalScrollHelper, ViewportControl } from "../provider";
 
 @Component({
-    selector: 'ngx-customscrollbar',
-    templateUrl: 'scrollbar.component.html',
-    styleUrls: ['./scrollbar.component.scss'],
+    selector: "ngx-customscrollbar",
+    templateUrl: "scrollbar.component.html",
+    styleUrls: ["./scrollbar.component.scss"],
 })
 export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, OnInit {
 
     @Input()
-    @HostBinding('class')
-    @HostBinding('class.ngx-customscrollbars')
+    @HostBinding("class")
+    @HostBinding("class.ngx-customscrollbars")
     public scrollDirection = Scrollbar.DIRECTION.Y;
 
-    @ViewChild('scrollbarTrack')
+    @ViewChild("scrollbarTrack")
     private scrollbarTrack: ElementRef;
 
-    @ViewChild('scrollbarThumb')
+    @ViewChild("scrollbarThumb")
     private scrollbarThumb: ElementRef;
 
     private scrollHelper: ScrollHelper;
@@ -73,15 +71,18 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * dom is rendered and initialized
      */
     ngAfterViewInit() {
+
+        this.viewportController.addScrollbar(this);
+
         /** viewport has been attached */
         this.viewportController.onLoad()
             .pipe(takeUntil(this.isDestroyed$))
             .subscribe((measure) => this.handleViewportLoaded(measure));
 
         /** viewport has been updated in size or is scrolled */
-        this.viewportController.onUpdate()
+        this.viewportController.onScroll()
             .pipe(takeUntil(this.isDestroyed$))
-            .subscribe((event) => this.handleViewportUpdate(event));
+            .subscribe((event) => this.handleViewportScroll(event));
     }
 
     /**
@@ -90,6 +91,9 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * from all streams
      */
     ngOnDestroy() {
+
+        this.viewportController.removeScrollbar(this);
+
         this.isDestroyed$.next(true);
         this.isDestroyed$.complete();
 
@@ -97,6 +101,18 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
         this.thumbMeasure = null;
         this.trackMeasure = null;
         this.viewportMeasure = null;
+    }
+
+    public render() {
+        const thumb = this.scrollbarThumb.nativeElement;
+        const track = this.scrollbarTrack.nativeElement;
+
+        this.renderer.setStyle(thumb, "display", "none");
+        this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
+        this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
+
+        this.renderScrollbarThumb();
+        this.moveThumbToPosition();
     }
 
     /**
@@ -118,24 +134,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * viewportControl sends update, this could be
      * initialized, scrolled or content changes
      */
-    private handleViewportUpdate(event) {
+    private handleViewportScroll(event: Scrollbar.ScrollEvent) {
 
-        switch (event.type) {
-            /** viewport has been updated in size / width */
-            case Scrollbar.VIEWPORT_EVENT.UPDATE:
-                const thumb = this.scrollbarThumb.nativeElement;
-                const track = this.scrollbarTrack.nativeElement;
-
-                this.renderer.setStyle(thumb, 'display', 'none');
-                this.trackMeasure.setMeasures(DomHelper.getMeasure(track));
-                this.thumbMeasure.setMeasures(DomHelper.getMeasure(thumb));
-
-                break;
-            /** viewport has been scrolled for a specific amount */
-            default:
-                if (this.scrollHelper.couldSkipScrollEvent(this.scrollDirection, event)) {
-                    return;
-                }
+        if (this.scrollHelper.couldSkipScrollEvent(this.scrollDirection, event)) {
+            return;
         }
 
         this.renderScrollbarThumb();
@@ -165,10 +167,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
         const thumb = this.scrollbarThumb.nativeElement;
 
         if (!this.scrollHelper.isScrollable()) {
-            this.renderer.setStyle(thumb, 'display', 'none');
+            this.renderer.setStyle(thumb, "display", "none");
         } else {
             const cssSize = this.scrollHelper.getScrollThumbCssSize();
-            this.renderer.removeStyle(thumb, 'display');
+            this.renderer.removeStyle(thumb, "display");
             this.renderer.setStyle(thumb, cssSize.style, cssSize.value);
         }
     }
@@ -187,7 +189,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      */
     private registerScrollTrackEvents() {
         const track = this.scrollbarTrack.nativeElement;
-        fromEvent(track, 'click')
+        fromEvent(track, "click")
             .pipe(takeUntil(this.isDestroyed$))
             .subscribe((event: MouseEvent) => {
                 if (event.target === this.scrollbarThumb.nativeElement) {
@@ -202,9 +204,9 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
      * handle drag drop on scrollbar thumb
      */
     private registerThumbEvents(): Observable<MouseEvent> {
-        const mouseDown$ = fromEvent(this.scrollbarThumb.nativeElement, 'mousedown');
-        const mouseMove$ = fromEvent(this.document, 'mousemove');
-        const mouseUp$ = fromEvent(window, 'mouseup');
+        const mouseDown$ = fromEvent(this.scrollbarThumb.nativeElement, "mousedown");
+        const mouseMove$ = fromEvent(this.document, "mousemove");
+        const mouseUp$ = fromEvent(window, "mouseup");
 
         const dragDrop$ = mouseDown$.pipe(
             tap(() => this.document.onselectstart = () => false),

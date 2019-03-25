@@ -1,6 +1,6 @@
-import { ContainerMeasureModel } from './container-measure.model';
-import { DomHelper } from '../helper/dom.helper';
-import { importData } from '../helper';
+import { ContainerMeasureModel } from "./container-measure.model";
+import { DomHelper } from "../helper/dom.helper";
+import { importData } from "../helper";
 
 export class ScrollContainerMeasureModel extends ContainerMeasureModel<DomHelper.IScrollContainerMeasure> {
 

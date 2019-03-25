@@ -1,10 +1,10 @@
-import { Injectable, NgZone } from '@angular/core';
-import { Observable, Subject, fromEvent, Subscription, OperatorFunction } from 'rxjs';
+import { Injectable, NgZone } from "@angular/core";
+import { Observable, Subject, fromEvent, Subscription, OperatorFunction } from "rxjs";
 
 /**
  *
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class WindowResize {
 
     /**
@@ -35,7 +35,7 @@ export class WindowResize {
     constructor(
         private zone: NgZone
     ) {
-        this.windowResize$ = fromEvent(window, 'resize');
+        this.windowResize$ = fromEvent(window, "resize");
         this.shared$ = new Subject();
     }
 

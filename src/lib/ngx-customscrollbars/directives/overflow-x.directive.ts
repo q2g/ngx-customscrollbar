@@ -1,14 +1,14 @@
 
-import { Directive, Input} from '@angular/core';
-import { DomHelper } from '../helper/dom.helper';
-import { Overflow } from '../model/overflow';
-import { NgxCustomScrollbarOverflow } from './overflow-auto';
+import { Directive, Input} from "@angular/core";
+import { DomHelper } from "../helper/dom.helper";
+import { Overflow } from "../model/overflow";
+import { NgxCustomScrollbarOverflow } from "./overflow-auto";
 
 /**
  * renders component only if the viewport is overflows in x axis
  * otherwise remove / dont render it
  */
-@Directive({ selector: '[ngxCustomScrollbarOverflowX]' })
+@Directive({ selector: "[ngxCustomScrollbarOverflowX]" })
 export class NgxCustomScrollbarOverflowXDirective extends NgxCustomScrollbarOverflow {
 
     @Input()

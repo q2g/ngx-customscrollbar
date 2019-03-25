@@ -1,6 +1,4 @@
-<p align="center">
-  <h1 align="center">Q2g - Ngx Custom Scrollbars</h1>
-</p>
+# Ngx-CustomScrollbars
 
 [![CodeFactor](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar/badge)](https://www.codefactor.io/repository/github/q2g/ngx-customscrollbar)
 [![npm](https://img.shields.io/npm/v/ngx-customscrollbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-customscrollbar)
@@ -8,40 +6,36 @@
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
 Pure ngx scrollbars without dependencies to jQuery or other scroll librarys, to bind customized scrollbars to every scrollable html element like scrollable div or textarea for example or a virtual view like a canvas.
+
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/q2g/ngx-customscrollbar/issues) or create a pull request.
 ___
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Vertical Scrollbar](#vertical-scrollbar)
-- [Horizontal Scrollbar](#horizontal-scrollbar)
-- [Directives](#directives)
-  - [ngxCustomScrollbarScrollable](#ngxcustomscrollbarscrollable)
-  - [ngxCustomScrollbarOverflowY](#ngxcustomscrollbaroverflowy)
-  - [ngxCustomScrollbarOverflowX](#ngxcustomscrollbaroverflowx)
-- [Author](#author)
-- [Credit](#credit)
-
-<a name="installation"/>
+- [Ngx-CustomScrollbars](#ngx-customscrollbars)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Vertical Scrollbar](#vertical-scrollbar)
+  - [Horizontal Scrollbar](#horizontal-scrollbar)
+  - [Docs](#docs)
+  - [Author](#author)
+  - [Credit](#credit)
 
 ## Installation
 
-**NPM**
+npm
 
 ```bash
 npm i --save ngx-customscrollbar
 ```
-
-<a name="usage"/>
 
 ## Usage
 
 Import `NgxCustomScrollbarModule` in your module
 
 ```js
-import { NgxCustomScrollbarModule } from 'ngx-customscrollbar';
+import { NgxCustomScrollbarModule } from "ngx-customscrollbar";
 
 @NgModule({
   imports: [
@@ -54,24 +48,26 @@ import { NgxCustomScrollbarModule } from 'ngx-customscrollbar';
 ## Vertical Scrollbar
 
 Component
+
 ```ts
-import { Component } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbar';
+import { Component } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbar";
 
 @Component({
-    selector: 'app-vertical-scroll',
-    templateUrl: 'vertical-scroll.component.html',
-    styleUrls: ['./vertical-scroll.component.scss'],
+    selector: "app-vertical-scroll",
+    templateUrl: "vertical-scroll.component.html",
+    styleUrls: ["./vertical-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent {
     // generate array with 300 items
-    public items: Array<string | number> = 
+    public items: Array<string | number> =
         Array.from({ length: 300 }, (val, index) => index);
 }
 ```
 
 Template
+
 ```html
 <div class="scrollWrapper">
   <div class="scrollView" ngxCustomScrollbarScrollable>
@@ -82,8 +78,15 @@ Template
 ```
 
 SCSS
+
 ```scss
+@import "~ngx-customscrollbar/scss/common";
+@import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
+
 .scrollWrapper {
+
+  @include ngxCustomScrollbarsTheme();
+
   display: flex;
   flex-direction: row;
   height: 500px;
@@ -92,14 +95,6 @@ SCSS
   .scrollView {
     flex: 1;
     overflow-y: auto;
-
-    /** disable scrollbar design global */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
   }
 }
 ```
@@ -107,23 +102,26 @@ SCSS
 ## Horizontal Scrollbar
 
 Component
+
 ```ts
-import { Component } from '@angular/core';
-import { ViewportControl } from 'ngx-customscrollbar';
+import { Component } from "@angular/core";
+import { ViewportControl } from "ngx-customscrollbar";
+
 
 @Component({
-    selector: 'app-vertical-scroll',
-    templateUrl: 'vertical-scroll.component.html',
-    styleUrls: ['./vertical-scroll.component.scss'],
+    selector: "app-vertical-scroll",
+    templateUrl: "vertical-scroll.component.html",
+    styleUrls: ["./vertical-scroll.component.scss"],
     viewProviders: [ViewportControl]
 })
 export class VerticalScrollComponent {
-    public items: Array<string | number> = 
+    public items: Array<string | number> =
         Array.from({ length: 20 }, (val, index) => index);
 }
 ```
 
 Template
+
 ```html
 <div class="scrollWrapper">
   <div class="scrollView" ngxCustomScrollbarScrollable>
@@ -134,8 +132,15 @@ Template
 ```
 
 SCSS
+
 ```scss
+@import "~ngx-customscrollbar/scss/common";
+@import "~ngx-customscrollbar/scss/ngx-customscrollbars.theme"
+
 .scrollWrapper {
+  // load scrollbars theme here
+  @include ngxCustomScrollbarsTheme();
+
   display: flex;
   flex-direction: row;
   height: 500px;
@@ -144,14 +149,6 @@ SCSS
   .scrollView {
     flex: 1;
     overflow-x: auto;
-
-    /** disable native scrollbar visibility */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
     > div {
         white-space: nowrap;
@@ -167,52 +164,14 @@ SCSS
 }
 ```
 
-<a name="styling"/>
+## Docs
 
-## Directives
-
-### ngxCustomScrollbarScrollable
-
-Wraps the html element into a HtmlScrollViewport and registered on ViewportControl. If Dom changes or element scrolls native, scrollbars will be updated.
-
-```html
-<div class="scrollViewport" ngxCustomScrollbarScrollable>
-    ...
-</div>
-<ngx-customscrollbar></ngx-customscrollbar>
-```
-
-### ngxCustomScrollbarOverflowY
-
-structural directive, controls visibility of scrollbar like css property overflow-x, possible
-values are **none**, **scroll** or **auto**. Default value is **auto**. If **none** is set container will not be scrollable anymore.
-
-@example
-```html
-<ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowY="'scroll'">
-</ngx-customscrollbar>
-```
-
-### ngxCustomScrollbarOverflowX
-
-structural directive, controls visibility of scrollbar like css property overflow-x, possible
-values are **none**, **scroll** or **auto**. Default value is **auto**
-If **none** is set container will not be scrollable anymore.
-
-@example
-```html
-<ngx-customscrollbar [scrollDirection]="horizontal" *ngxCustomScrollbarOverflowX="'scroll'">
-</ngx-customscrollbar>
-```
-
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/q2g/ngx-customscrollbar/issues) or create a pull request.
-
-<a name="author"/>
+-[Theming](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/theming.md)  
+-[Directives](https://github.com/q2g/ngx-customscrollbar/blob/master/docs/directives.md)  
 
 ## Author
-Q2g - Ralf Hannuschka [Github](https://github.com/q2g)
 
-<a name="credit"/>
+Q2g - Ralf Hannuschka [Github](https://github.com/q2g)
 
 ## Credit
 

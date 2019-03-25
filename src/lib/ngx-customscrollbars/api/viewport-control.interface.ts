@@ -1,6 +1,6 @@
-import { Scrollbar } from './scrollbar.interface';
-import { DomHelper } from '../helper/dom.helper';
-import { Observable } from 'rxjs';
+import { Scrollbar } from "./scrollbar.interface";
+import { DomHelper } from "../helper/dom.helper";
+import { Observable } from "rxjs";
 
 export interface IViewportControl {
 

@@ -1,4 +1,4 @@
-import { Scrollbar } from '../api/scrollbar.interface';
+import { Scrollbar } from "../api/scrollbar.interface";
 
 export namespace DomHelper {
 
@@ -60,8 +60,8 @@ export namespace DomHelper {
     export function getInnerHeight(el: HTMLElement): number {
         /** @todo this will called alot times on resize */
         const computed = getComputedStyle(el, null);
-        const paddingTop = parseInt(computed.getPropertyValue('padding-top'), 10);
-        const paddingBot = parseInt(computed.getPropertyValue('padding-bottom'), 10);
+        const paddingTop = parseInt(computed.getPropertyValue("padding-top"), 10);
+        const paddingBot = parseInt(computed.getPropertyValue("padding-bottom"), 10);
         return el.offsetHeight - paddingTop - paddingBot;
     }
 
@@ -71,8 +71,8 @@ export namespace DomHelper {
     export function getInnerWidth(el: HTMLElement): number {
         /** @todo this will called alot times on resize */
         const computed = getComputedStyle(el, null);
-        const paddingLeft = parseInt(computed.getPropertyValue('padding-left'), 10);
-        const paddingRight = parseInt(computed.getPropertyValue('padding-right'), 10);
+        const paddingLeft = parseInt(computed.getPropertyValue("padding-left"), 10);
+        const paddingRight = parseInt(computed.getPropertyValue("padding-right"), 10);
         return el.offsetWidth - paddingLeft - paddingRight;
     }
 

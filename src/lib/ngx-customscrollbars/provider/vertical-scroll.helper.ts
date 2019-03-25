@@ -1,5 +1,5 @@
-import { ScrollHelper } from './scroll.helper';
-import { Scrollbar } from '../api/scrollbar.interface';
+import { ScrollHelper } from "./scroll.helper";
+import { Scrollbar } from "../api/scrollbar.interface";
 
 export class VerticalScrollHelper extends ScrollHelper {
 
@@ -58,14 +58,14 @@ export class VerticalScrollHelper extends ScrollHelper {
     public getScrollThumbCssTransform(): any {
         const top = this.calculateThumbPosition();
         return {
-            style: 'transform',
+            style: "transform",
             value: `translate3d(0, ${top}px, 0)`
         };
     }
 
     public getScrollThumbCssSize(): any {
         const height = this.calculateThumbSize();
-        return { style: 'height', value: `${height}px` };
+        return { style: "height", value: `${height}px` };
     }
 
     public isScrollable(): boolean {

@@ -1,10 +1,11 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { Scrollbar } from '../api/scrollbar.interface';
-import { WindowResize } from './window-resize';
-import { DomHelper } from '../helper/dom.helper';
-import { ScrollContainerMeasureModel } from '../model/scroll-container-measure.model';
+import { Injectable, OnDestroy } from "@angular/core";
+import { Observable, ReplaySubject, Subject, Subscription } from "rxjs";
+import { takeUntil } from "rxjs/internal/operators/takeUntil";
+import { Scrollbar } from "../api/scrollbar.interface";
+import { WindowResize } from "./window-resize";
+import { DomHelper } from "../helper/dom.helper";
+import { ScrollContainerMeasureModel } from "../model/scroll-container-measure.model";
+import { NgxCustomScrollbarComponent } from "../components/scrollbar.component";
 
 /**
  * viewport contol service, the glue between scrollbars and the viewport
@@ -16,9 +17,13 @@ export class ViewportControl implements OnDestroy {
 
     private viewportReady$: ReplaySubject<ScrollContainerMeasureModel>;
 
+    private viewportScroll$: Subject<Scrollbar.ScrollEvent>;
+
     private destroy$: Subject<boolean> = new Subject();
 
     private scrollSub: Subscription;
+
+    private scrollbars: Set<NgxCustomScrollbarComponent> = new Set();
 
     private scrollbarViewPort: Scrollbar.IScrollbarViewport;
     private scrollPosition = {
@@ -35,6 +40,7 @@ export class ViewportControl implements OnDestroy {
     ) {
         this.viewportUpdate$ = new Subject();
         this.viewportReady$ = new ReplaySubject(1);
+        this.viewportScroll$ = new Subject();
 
         this.registerEvents();
     }
@@ -62,8 +68,29 @@ export class ViewportControl implements OnDestroy {
         this.scrollbarViewPort.control = this;
 
         /** create new viewport model if a viewport has been bound */
-        this.viewportModel = new ScrollContainerMeasureModel(viewPort.measureSize());
+        this.viewportModel = new ScrollContainerMeasureModel(this.scrollbarViewPort.measureSize());
         this.viewportReady$.next(this.viewportModel);
+
+        this.scrollbarViewPort.init();
+    }
+
+    /**
+     * register scrollbar to viewport so we could render them
+     * programatically if we need to do
+     */
+    public addScrollbar(scrollbar: NgxCustomScrollbarComponent) {
+        if (!this.scrollbars.has(scrollbar)) {
+            this.scrollbars.add(scrollbar);
+        }
+    }
+
+    /**
+     * remove scrollbar to viewport
+     */
+    public removeScrollbar(scrollbar: NgxCustomScrollbarComponent) {
+        if (this.scrollbars.has(scrollbar)) {
+            this.scrollbars.delete(scrollbar);
+        }
     }
 
     public get viewportDimension(): DomHelper.IScrollContainerMeasure {
@@ -86,11 +113,23 @@ export class ViewportControl implements OnDestroy {
 
     /** not called if i just reload this */
     ngOnDestroy(): void {
+        this.scrollbarViewPort.destroy();
+
         this.destroy$.next(true);
         this.viewportReady$.complete();
         this.viewportUpdate$.complete();
         this.destroy$.complete();
+        this.scrollbars.clear();
         this.viewportModel = null;
+        this.scrollbars = null;
+    }
+
+    public onLoad(): Observable<ScrollContainerMeasureModel> {
+        return this.viewportReady$.asObservable();
+    }
+
+    public onScroll() {
+        return this.viewportScroll$.asObservable();
     }
 
     /**
@@ -101,19 +140,20 @@ export class ViewportControl implements OnDestroy {
         return this.viewportUpdate$.asObservable();
     }
 
-    public onLoad(): Observable<ScrollContainerMeasureModel> {
-        return this.viewportReady$.asObservable();
-    }
-
     /**
      * viewport was changed, this could happen if new content, or window has been resized
      * has been added or removed
      */
     public update() {
-        /** update model size */
+        /** triggers soft update to trigger directives */
         this.viewportModel.setMeasures(this.scrollbarViewPort.measureSize());
         this.emitUpdate({ type: Scrollbar.VIEWPORT_EVENT.UPDATE });
+
+        /** get size again and trigger update for scrollbars */
+        this.viewportModel.setMeasures(this.scrollbarViewPort.measureSize());
+        this.scrollbars.forEach((scrollbar) => scrollbar.render());
     }
+
 
     /**
      * viewport should scroll by specific amount
@@ -155,7 +195,7 @@ export class ViewportControl implements OnDestroy {
         this.viewportModel.scrollLeft = scrolled.left;
         this.viewportModel.scrollTop = scrolled.top;
 
-        this.emitUpdate({
+        this.viewportScroll$.next({
             scrolledY,
             scrolledX,
             type: Scrollbar.VIEWPORT_EVENT.SCROLLED
