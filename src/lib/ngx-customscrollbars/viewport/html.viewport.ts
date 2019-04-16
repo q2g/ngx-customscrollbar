@@ -2,10 +2,12 @@ import { NgZone } from "@angular/core";
 import { supportsScrollBehavior } from "@angular/cdk/platform";
 import { fromEvent, Observable, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { Scrollbar, IDomObserver } from "../api";
 import { DomHelper } from "../helper/dom.helper";
-import { InputObserver, DomMutationObserver } from "./observer";
 import { Viewport } from "./viewport";
+import { IDomObserver } from "../api/dom-observer.interface";
+import { Scrollbar } from "../api/scrollbar.interface";
+import { InputObserver } from "./observer/input.observer";
+import { DomMutationObserver } from "./observer/dom-mutation.observer";
 
 export class HtmlViewport extends Viewport {
 
