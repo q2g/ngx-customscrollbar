@@ -5,6 +5,7 @@ import {NgxCustomScrollbarHideOnNativeStyleDirective } from "./directives/no-nat
 import {NgxCustomScrollbarScrollableDirective} from "./directives/scrollable-container.directive";
 import {NgxCustomScrollbarOverflowYDirective} from "./directives/overflow-y.directive";
 import {NgxCustomScrollbarOverflowXDirective} from "./directives/overflow-x.directive";
+import { ViewportControl } from "./provider/viewport.control";
 
 @NgModule({
     declarations: [
@@ -23,6 +24,9 @@ import {NgxCustomScrollbarOverflowXDirective} from "./directives/overflow-x.dire
     ],
     imports: [
         CommonModule,
+    ],
+    providers: [
+        ViewportControl
     ]
 })
 export class NgxCustomScrollbarModule { }

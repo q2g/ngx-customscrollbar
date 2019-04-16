@@ -10,7 +10,8 @@ import {
     ViewChild,
     OnInit,
     Input,
-    HostBinding
+    HostBinding,
+    Optional
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { fromEvent, Subject, Observable } from "rxjs";
@@ -18,12 +19,15 @@ import { tap, takeUntil, switchMap, finalize } from "rxjs/operators";
 import { Scrollbar } from "../api/scrollbar.interface";
 import { DomHelper } from "../helper/dom.helper";
 import { ContainerMeasureModel } from "../model/container-measure.model";
-import { ScrollHelper, HorizontalScrollHelper, VerticalScrollHelper, ViewportControl } from "../provider";
+import { ScrollHelper } from "../provider/scroll.helper";
+import { ViewportControl } from "../provider/viewport.control";
+import { HorizontalScrollHelper } from "../provider/horiziontal-scroll.helper";
+import { VerticalScrollHelper } from "../provider/vertical-scroll.helper";
 
 @Component({
     selector: "ngx-customscrollbar",
     templateUrl: "scrollbar.component.html",
-    styleUrls: ["./scrollbar.component.scss"],
+    styleUrls: ["./scrollbar.component.scss"]
 })
 export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, OnInit {
 
@@ -45,7 +49,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
     private viewportMeasure: DomHelper.IScrollContainerMeasure;
 
     constructor(
-        @Host() private viewportController: ViewportControl,
+        @Host() @Optional() private viewportController: ViewportControl,
         @Inject(DOCUMENT) private document,
         private ngZone: NgZone,
         private renderer: Renderer2,

@@ -1,5 +1,6 @@
 
-import { IDomObserver, IViewportControl } from "../../api";
+import { IDomObserver } from "../../api/dom-observer.interface";
+import { IViewportControl } from "../../api/viewport-control.interface";
 
 /**
  * watches dom for mutations, something has been added or removed

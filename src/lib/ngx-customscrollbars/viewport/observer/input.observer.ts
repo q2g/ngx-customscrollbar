@@ -1,7 +1,8 @@
 import { Subject, fromEvent } from "rxjs";
 import { animationFrame } from "rxjs/internal/scheduler/animationFrame";
 import { debounceTime, takeUntil } from "rxjs/operators";
-import { IDomObserver, IViewportControl } from "../../api";
+import { IDomObserver } from "../../api/dom-observer.interface";
+import { IViewportControl } from "../../api/viewport-control.interface";
 
 /**
  * watches a textarea field for input changes
