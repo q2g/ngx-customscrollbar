@@ -51,6 +51,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
     constructor(
         @Host() @Optional() private viewportController: ViewportControl,
         @Inject(DOCUMENT) private document,
+        private hostEl: ElementRef,
         private ngZone: NgZone,
         private renderer: Renderer2,
     ) {
@@ -218,6 +219,8 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
                 const offset = DomHelper.getElementBounds(this.scrollbarTrack.nativeElement);
                 const dragOffset = DomHelper.getMouseOffset(dragStart);
 
+                this.renderer.addClass(this.hostEl.nativeElement, "dragged");
+
                 /** switch to mousemove stream until we press mouse button */
                 return mouseMove$.pipe(
                     tap((dragMove: MouseEvent) => {
@@ -225,7 +228,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
                             this.scrollHelper.calculateDragDropScrollOffset(dragMove, dragOffset, offset)
                         );
                     }),
-                    finalize(() => this.document.onselectstart = null),
+                    finalize(() => {
+                        this.document.onselectstart = null;
+                        this.renderer.removeClass(this.hostEl, "dragged");
+                    }),
                     takeUntil(mouseUp$),
                 );
             })
