@@ -230,7 +230,7 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
                     }),
                     finalize(() => {
                         this.document.onselectstart = null;
-                        this.renderer.removeClass(this.hostEl, "dragged");
+                        this.renderer.removeClass(this.hostEl.nativeElement, "dragged");
                     }),
                     takeUntil(mouseUp$),
                 );
