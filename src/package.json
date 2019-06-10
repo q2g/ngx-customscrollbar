@@ -20,7 +20,7 @@
     "@angular/core": "8.0.0",
     "@angular/forms": "8.0.0",
     "@angular/http": "7.2.15",
-    "@angular/material": "8.0.0",
+    "@angular/material": "8.0.1",
     "@angular/platform-browser": "8.0.0",
     "@angular/platform-browser-dynamic": "8.0.0",
     "@angular/router": "8.0.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "0.800.2",
     "@angular-devkit/build-ng-packagr": "0.800.2",
-    "@angular/cdk": "8.0.0",
+    "@angular/cdk": "8.0.1",
     "@angular/cli": "8.0.2",
     "@angular/compiler-cli": "8.0.0",
     "@angular/language-service": "8.0.0",
