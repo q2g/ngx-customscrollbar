@@ -25,7 +25,13 @@ ___
 npm
 
 ```bash
+# angular 8
 npm i --save ngx-customscrollbar
+```
+
+```bash
+# angular 7
+npm i --save ngx-customscrollbar@1.2.3
 ```
 
 ## Usage
