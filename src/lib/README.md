@@ -30,6 +30,11 @@ npm
 npm i --save ngx-customscrollbar
 ```
 
+```bash
+# for angular 7
+npm i --save ngx-customscrollbar@1.2.3
+```
+
 ## Usage
 
 Import `NgxCustomScrollbarModule` in your module
