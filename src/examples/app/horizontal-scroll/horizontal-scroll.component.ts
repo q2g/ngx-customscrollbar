@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ViewportControl } from "ngx-customscrollbars";
+import { ViewportControl } from "lib/public_api";
 
 @Component({
     selector: "app-horizontal-scroll",

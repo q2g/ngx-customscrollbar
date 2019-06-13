@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ViewportControl } from "ngx-customscrollbars";
+import { ViewportControl } from "lib/public_api";
 
 /** @title Basic virtual scroll */
 @Component({
