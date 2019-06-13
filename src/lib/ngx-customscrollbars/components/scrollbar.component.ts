@@ -36,10 +36,10 @@ export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, On
     @HostBinding("class.ngx-customscrollbars")
     public scrollDirection = Scrollbar.DIRECTION.Y;
 
-    @ViewChild("scrollbarTrack")
+    @ViewChild("scrollbarTrack", {read: ElementRef, static: true})
     private scrollbarTrack: ElementRef;
 
-    @ViewChild("scrollbarThumb")
+    @ViewChild("scrollbarThumb", {read: ElementRef, static: true})
     private scrollbarThumb: ElementRef;
 
     private scrollHelper: ScrollHelper;

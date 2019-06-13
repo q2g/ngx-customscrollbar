@@ -8,7 +8,7 @@ import { VerticalScrollComponent } from "./vertical-scroll/vertical-scroll.compo
 import { HorizontalScrollComponent } from "./horizontal-scroll/horizontal-scroll.component";
 import { HorizontalVerticalScrollComponent } from "./horizontal-vertical-scroll/horizontal-vertical-scroll.component";
 import { AsyncScrollComponent } from "./async/async-scroll.component";
-import { NgxCustomScrollbarModule } from "ngx-customscrollbars";
+import { NgxCustomScrollbarModule } from "lib/public_api";
 import { TableComponent } from "./table/table.component";
 import { CdkVirtualScrollOverviewExampleComponent } from "./virtual-scroll/virtual-scroll.component";
 import { ScrollingModule } from "@angular/cdk/scrolling";
