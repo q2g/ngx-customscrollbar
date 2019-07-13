@@ -1,12 +1,18 @@
-import { Directive, NgZone, Host, ElementRef, OnDestroy, OnInit, AfterViewChecked, AfterViewInit } from "@angular/core";
+import { Directive, NgZone, Host, ElementRef, OnDestroy, OnInit, AfterViewChecked, AfterViewInit, Input, HostBinding, Renderer2 } from "@angular/core";
 import { ViewportControl } from "../provider/viewport.control";
 import { HtmlViewport } from "../viewport/html.viewport";
-import { Subject, Subscription, timer } from "rxjs";
-import { delay, debounceTime, filter, tap } from "rxjs/operators";
+import { Subject, fromEvent } from "rxjs";
+import { debounceTime, filter, takeUntil, delay } from "rxjs/operators";
 
 interface ContainerScrollSize {
     scrollHeight: number;
     scrollWidth: number;
+}
+
+enum CHANGE_DETECTION_STRATEGY {
+    CHECKED  = "checked", // change detection
+    INPUT    = "input",
+    MUTATION = "mutation"
 }
 
 /**
@@ -25,16 +31,29 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
 
     private update$: Subject<ContainerScrollSize> = new Subject();
 
-    private updateSub: Subscription;
+    private changeDetection: CHANGE_DETECTION_STRATEGY = CHANGE_DETECTION_STRATEGY.CHECKED;
+
+    private destroyed$: Subject<boolean> = new Subject();
 
     constructor(
         @Host() private viewportControl: ViewportControl,
         private zone: NgZone,
-        private el: ElementRef
-    ) { }
+        private el: ElementRef,
+        private renderer: Renderer2
+    ) {}
+
+    @Input("ngxCustomScrollbarScrollable")
+    public set changeDetectionStrategy(strategy: CHANGE_DETECTION_STRATEGY) {
+        if (strategy) {
+            this.changeDetection = strategy;
+        }
+    }
 
     ngOnInit() {
-        this.updateSub = this.update$.pipe(
+        this.renderer.addClass(this.el.nativeElement, "ngx-customscrollbar--html-viewport");
+        this.update$.pipe(
+            takeUntil(this.destroyed$),
+            delay(100),
             filter((newSize) => {
                 const hasChanged = JSON.stringify(newSize) !== JSON.stringify(this.scrollSize);
                 this.scrollSize = newSize;
@@ -43,11 +62,18 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
         ).subscribe({
             next: () => this.viewportControl.update()
         });
+
+        switch (this.changeDetection) {
+            case CHANGE_DETECTION_STRATEGY.INPUT:
+                this.initInputChangeDetection();
+                break;
+        }
     }
 
     ngAfterViewChecked() {
-        /** this will trigger change detection ? */
-        this.update$.next(this.getScrollDimension());
+        if (this.changeDetection === CHANGE_DETECTION_STRATEGY.CHECKED) {
+            this.update$.next(this.getScrollDimension());
+        }
     }
 
     /**
@@ -59,9 +85,12 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
     ngOnDestroy() {
         this.htmlViewport.destroy();
         this.viewportControl = null;
-        this.updateSub.unsubscribe();
         this.update$.complete();
         this.update$ = null;
+
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+        this.destroyed$ = null;
     }
 
     /**
@@ -86,5 +115,13 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
             scrollHeight: this.el.nativeElement.scrollHeight,
             scrollWidth: this.el.nativeElement.scrollWidth
         };
+    }
+
+    private initInputChangeDetection() {
+        fromEvent(this.el.nativeElement, "input")
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe({
+                next: () => this.update$.next(this.getScrollDimension())
+            });
     }
 }
