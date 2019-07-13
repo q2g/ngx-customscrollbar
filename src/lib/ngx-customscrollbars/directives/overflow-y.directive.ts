@@ -14,7 +14,6 @@ export class NgxCustomScrollbarOverflowYDirective extends NgxCustomScrollbarOver
         if (overflow === Overflow.NONE) {
             this.viewportController.disableScroll(true);
         }
-
         this.overflow = overflow;
     }
 
