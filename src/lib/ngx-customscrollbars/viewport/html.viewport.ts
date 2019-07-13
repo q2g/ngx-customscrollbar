@@ -4,10 +4,7 @@ import { fromEvent, Observable, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { DomHelper } from "../helper/dom.helper";
 import { Viewport } from "./viewport";
-import { IDomObserver } from "../api/dom-observer.interface";
 import { Scrollbar } from "../api/scrollbar.interface";
-import { InputObserver } from "./observer/input.observer";
-import { DomMutationObserver } from "./observer/dom-mutation.observer";
 
 export class HtmlViewport extends Viewport {
 
@@ -15,13 +12,6 @@ export class HtmlViewport extends Viewport {
      * stream to register on native scroll events
      */
     private scroll$: Observable<Event>;
-
-    /**
-     * current change observer, in the most cases this will be
-     * mutation observer to detect changes on dom. For textareas we
-     * will use input observer
-     */
-    private changeObserver: IDomObserver;
 
     private destroy$: Subject<boolean>;
 
@@ -37,10 +27,10 @@ export class HtmlViewport extends Viewport {
 
     /** element is bound to viewport */
     public init() {
+
         this.scroll$ = fromEvent(this.element, "scroll")
             .pipe(takeUntil(this.destroy$));
 
-        this.registerChangeObserver();
         this.registerEvents();
     }
 
@@ -55,10 +45,8 @@ export class HtmlViewport extends Viewport {
             return;
         }
 
-        this.changeObserver.disconnect();
         this.destroy$.next(true);
         this.destroy$.complete();
-        this.changeObserver = null;
         this.isDestroyed = true;
     }
 
@@ -94,18 +82,6 @@ export class HtmlViewport extends Viewport {
             top: this.element.scrollTop,
             left: this.element.scrollLeft
         };
-    }
-
-    /**
-     * register change observer for html viewport
-     */
-    private registerChangeObserver() {
-        if (this.element.tagName.toLowerCase() === "textarea") {
-            this.changeObserver = new InputObserver(this.control);
-        } else {
-            this.changeObserver = new DomMutationObserver(this.control);
-        }
-        this.changeObserver.connect(this.element);
     }
 
     /**

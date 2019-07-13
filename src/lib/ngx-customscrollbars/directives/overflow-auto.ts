@@ -21,9 +21,11 @@ export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, 
     constructor(
         /** The view container to add items to. */
         private viewContainerRef: ViewContainerRef,
+
         /** The template to use when stamping out new items. */
         private template: TemplateRef<any>,
         /** viewport control to bound */
+
         @Host() protected viewportController: ViewportControl,
         private changeDetector: ChangeDetectorRef
     ) {
