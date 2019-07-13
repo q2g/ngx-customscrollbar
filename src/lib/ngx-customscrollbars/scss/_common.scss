@@ -1,10 +1,12 @@
-[ngxCustomScrollbarScrollable] {
+.ngx-customscrollbar--html-viewport {
 
-  /** disable scrollbar design global */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    overflow: auto;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    /** disable scrollbar design global */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
