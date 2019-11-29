@@ -1,8 +1,8 @@
-import { Directive, NgZone, Host, ElementRef, OnDestroy, OnInit, AfterViewChecked, AfterViewInit, Input, HostBinding, Renderer2 } from "@angular/core";
+import { Directive, NgZone, Host, ElementRef, OnDestroy, OnInit, AfterViewChecked, AfterViewInit, Input, Renderer2 } from "@angular/core";
 import { ViewportControl } from "../provider/viewport.control";
 import { HtmlViewport } from "../viewport/html.viewport";
 import { Subject, fromEvent } from "rxjs";
-import { debounceTime, filter, takeUntil, delay } from "rxjs/operators";
+import { filter, takeUntil, delay, distinctUntilChanged } from "rxjs/operators";
 
 interface ContainerScrollSize {
     scrollHeight: number;
@@ -35,6 +35,8 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
 
     private destroyed$: Subject<boolean> = new Subject();
 
+    private oldScrollDimension = null;
+
     constructor(
         @Host() private viewportControl: ViewportControl,
         private zone: NgZone,
@@ -52,13 +54,14 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
     ngOnInit() {
         this.renderer.addClass(this.el.nativeElement, "ngx-customscrollbar--html-viewport");
         this.update$.pipe(
-            takeUntil(this.destroyed$),
+            distinctUntilChanged(),
             delay(100),
             filter((newSize) => {
                 const hasChanged = JSON.stringify(newSize) !== JSON.stringify(this.scrollSize);
                 this.scrollSize = newSize;
                 return hasChanged;
             }),
+            takeUntil(this.destroyed$)
         ).subscribe({
             next: () => this.viewportControl.update()
         });
@@ -72,7 +75,12 @@ export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, Aft
 
     ngAfterViewChecked() {
         if (this.changeDetection === CHANGE_DETECTION_STRATEGY.CHECKED) {
-            this.update$.next(this.getScrollDimension());
+            const newScrollDimension = this.getScrollDimension();
+            if (this.oldScrollDimension && JSON.stringify(this.oldScrollDimension) === JSON.stringify(newScrollDimension)) {
+                return;
+            }
+            this.oldScrollDimension = newScrollDimension;
+            this.update$.next(newScrollDimension);
         }
     }
 
