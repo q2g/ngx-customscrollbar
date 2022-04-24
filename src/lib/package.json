@@ -21,6 +21,6 @@
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/cdk": "^8.0.0"
+    "@angular/cdk": "^8.0.0 || ^13.0.0"
   }
 }
