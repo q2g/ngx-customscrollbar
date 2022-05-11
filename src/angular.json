@@ -91,18 +91,6 @@
               "examples/assets"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "examples/tsconfig.app.json",
-              "examples/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -130,18 +118,6 @@
             "main": "lib/test.ts",
             "tsConfig": "lib/tsconfig.spec.json",
             "karmaConfig": "lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "lib/tsconfig.lib.json",
-              "lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
