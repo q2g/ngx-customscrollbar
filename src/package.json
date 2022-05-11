@@ -19,7 +19,7 @@
     "@angular/compiler": "9.1.13",
     "@angular/core": "9.1.13",
     "@angular/forms": "9.1.13",
-    "@angular/material": "8.2.3",
+    "@angular/material": "9.2.4",
     "@angular/platform-browser": "9.1.13",
     "@angular/platform-browser-dynamic": "9.1.13",
     "@angular/router": "9.1.13",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.15",
     "@angular-devkit/build-ng-packagr": "~0.901.15",
-    "@angular/cdk": "8.2.3",
+    "@angular/cdk": "9.2.4",
     "@angular/cli": "9.1.15",
     "@angular/compiler-cli": "9.1.13",
     "@angular/language-service": "9.1.13",

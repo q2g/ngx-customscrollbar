@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MatTableModule} from "@angular/material";
+import { MatTableModule } from "@angular/material/table";
 
 import { AppComponent } from "./app.component";
 import { VerticalScrollComponent } from "./vertical-scroll/vertical-scroll.component";
