@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "demo": "ng build ngx-customscrollbars && npm start",
-    "build:pkg": "ng build ngx-customscrollbars && npm run copy:scss",
+    "build:pkg": "ng build ngx-customscrollbars --prod && npm run copy:scss",
     "copy:scss": "cpx lib/ngx-customscrollbars/scss/**/*.scss dist/ngx-customscrollbars/scss",
     "start": "ng serve",
     "build": "ng build",
@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "9.1.13",
     "@angular/router": "9.1.13",
     "rxjs": "6.5.3",
+    "tsickle": "0.46.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
