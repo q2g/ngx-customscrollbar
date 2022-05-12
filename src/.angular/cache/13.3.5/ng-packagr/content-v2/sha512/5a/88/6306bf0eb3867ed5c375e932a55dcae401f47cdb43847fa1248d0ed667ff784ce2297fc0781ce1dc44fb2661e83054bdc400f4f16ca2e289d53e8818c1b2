@@ -1,0 +1,1 @@
+{"css":":host{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;display:flex}:host.vertical{-moz-flex-direction:column;flex-direction:column}:host.vertical .scrollbar-thumb{width:100%}:host.horizontal{-moz-flex-direction:row;flex-direction:row}:host.horizontal .scrollbar-thumb{height:100%}:host .scrollbar-track{flex:1}\n","warnings":[]}

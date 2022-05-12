@@ -82,7 +82,7 @@ function debounceAnimationFrame<T>(): OperatorFunction<T, T> {
         let resizeFired = false;
         let drawing = false;
 
-        const requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame;
+        const requestAnimationFrame = window.requestAnimationFrame || (window as any).webkitRequestAnimationFrame;
 
         const obs = new Observable<T>((observer) => {
             function drawResize(): void {
