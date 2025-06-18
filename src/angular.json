@@ -105,8 +105,8 @@
                     "options": {
                         "tsConfig": "lib/tsconfig.lib.json",
                         "project": "lib/ng-package.json"
-                    }
-                    , "configurations": {
+                    },
+                    "configurations": {
                         "production": {
                             "tsConfig": "tsconfig.lib.prod.json"
                         }
