@@ -5,11 +5,9 @@ import { ViewportControl } from "lib/public_api";
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss", "./scrollbar.scss"],
-    viewProviders: [ViewportControl]
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class AppComponent {
-
-    public constructor(
-    ) {
-    }
+    public constructor() { }
 }

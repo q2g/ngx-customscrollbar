@@ -8,7 +8,10 @@ import { NgxCustomScrollbarOverflow } from "./overflow-auto";
  * renders component only if the viewport is overflows in x axis
  * otherwise remove / dont render it
  */
-@Directive({ selector: "[ngxCustomScrollbarOverflowX]" })
+@Directive({
+    selector: "[ngxCustomScrollbarOverflowX]",
+    standalone: false
+})
 export class NgxCustomScrollbarOverflowXDirective extends NgxCustomScrollbarOverflow {
 
     @Input()

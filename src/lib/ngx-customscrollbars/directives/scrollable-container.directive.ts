@@ -21,7 +21,8 @@ enum CHANGE_DETECTION_STRATEGY {
  */
 @Directive({
     selector: "[ngxCustomScrollbarScrollable]",
-    exportAs: "ngxCustomScrollbarHTMLViewport"
+    exportAs: "ngxCustomScrollbarHTMLViewport",
+    standalone: false
 })
 export class NgxCustomScrollbarScrollableDirective implements AfterViewInit, AfterViewChecked, OnDestroy, OnInit {
 

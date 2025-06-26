@@ -5,7 +5,8 @@ import { ViewportControl } from "lib/public_api";
     selector: "app-horizontal-scroll",
     templateUrl: "horizontal-scroll.component.html",
     styleUrls: ["./horizontal-scroll.component.scss"],
-    viewProviders: [ViewportControl]
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class HorizontalScrollComponent {
 

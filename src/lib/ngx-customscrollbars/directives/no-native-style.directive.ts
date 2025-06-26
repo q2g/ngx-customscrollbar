@@ -5,7 +5,10 @@ import { Platform } from "@angular/cdk/platform";
  * dont show element if we can support styles of scrollbar
  * only via css. Possible with webkit / BLINK (chrome, chromium, opera)
  */
-@Directive({ selector: "[ngxCustomScrollbarHideOnNativeStyle]"})
+@Directive({
+    selector: "[ngxCustomScrollbarHideOnNativeStyle]",
+    standalone: false
+})
 export class NgxCustomScrollbarHideOnNativeStyleDirective {
 
     constructor(

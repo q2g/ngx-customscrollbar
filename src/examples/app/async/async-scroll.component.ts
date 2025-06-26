@@ -7,7 +7,8 @@ import { of, Observable } from "rxjs";
     selector: "app-horizontal-scroll",
     templateUrl: "async-scroll.component.html",
     styleUrls: ["./async-scroll.component.scss"],
-    viewProviders: [ViewportControl]
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class AsyncScrollComponent implements OnInit {
 

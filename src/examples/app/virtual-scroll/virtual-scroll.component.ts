@@ -3,10 +3,11 @@ import { ViewportControl } from "lib/public_api";
 
 /** @title Basic virtual scroll */
 @Component({
-  selector: "app-cdk-virtual-scroll-overview-example",
-  styleUrls: ["virtual-scroll.component.scss"],
-  templateUrl: "virtual-scroll.component.html",
-  viewProviders: [ViewportControl]
+    selector: "app-cdk-virtual-scroll-overview-example",
+    styleUrls: ["virtual-scroll.component.scss"],
+    templateUrl: "virtual-scroll.component.html",
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class CdkVirtualScrollOverviewExampleComponent implements OnInit {
   public items;

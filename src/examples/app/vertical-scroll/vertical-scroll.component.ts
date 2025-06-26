@@ -5,7 +5,8 @@ import { ViewportControl } from "lib/public_api";
     selector: "app-vertical-scroll",
     templateUrl: "vertical-scroll.component.html",
     styleUrls: ["./vertical-scroll.component.scss"],
-    viewProviders: [ViewportControl]
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class VerticalScrollComponent implements OnInit {
 

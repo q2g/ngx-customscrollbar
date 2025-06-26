@@ -27,7 +27,8 @@ import { VerticalScrollHelper } from "../provider/vertical-scroll.helper";
 @Component({
     selector: "ngx-customscrollbar",
     templateUrl: "scrollbar.component.html",
-    styleUrls: ["./scrollbar.component.scss"]
+    styleUrls: ["./scrollbar.component.scss"],
+    standalone: false
 })
 export class NgxCustomScrollbarComponent implements AfterViewInit, OnDestroy, OnInit {
 

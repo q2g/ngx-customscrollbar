@@ -25,7 +25,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
     selector: "app-table-scroll",
     templateUrl: "table.component.html",
     styleUrls: ["./table.component.scss"],
-    viewProviders: [ViewportControl]
+    viewProviders: [ViewportControl],
+    standalone: false
 })
 export class TableComponent {
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];

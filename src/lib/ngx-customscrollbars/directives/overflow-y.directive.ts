@@ -6,7 +6,10 @@ import { Overflow } from "../model/overflow";
 /**
  * remove component if no overflow on y axis
  */
-@Directive({selector: "[ngxCustomScrollbarOverflowY]"})
+@Directive({
+    selector: "[ngxCustomScrollbarOverflowY]",
+    standalone: false
+})
 export class NgxCustomScrollbarOverflowYDirective extends NgxCustomScrollbarOverflow {
 
     @Input()
