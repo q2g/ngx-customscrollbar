@@ -28,9 +28,13 @@ import { CdkVirtualScrollOverviewExampleComponent } from "./virtual-scroll/virtu
         MatTableModule,
         NgxCustomScrollbarModule,
         BrowserModule,
-        // TODO check for angular >=17: Make sure you configure
+        // TODO check for angular >=17:
+        // 1. Make sure you configure
         // setupTestingRouter, canceledNavigationResolution, paramsInheritanceStrategy, titleStrategy, urlUpdateStrategy, urlHandlingStrategy, and malformedUriErrorHandler
-        // in (provideRouter or) RouterModule.forRoot since these properties are now not part of the Router's public API
+        // in (provideRouter or) RouterModule.forRoot since these properties are now not part of the Router's public API.
+        // 2. Handle URL parsing errors in the UrlSerializer.parse instead of malformedUriErrorHandler because it's now part of the public API surface.
+        // 3. If you want the child routes of loadComponent routes to inherit data from their parent specify the paramsInheritanceStrategy to always,
+        // which in v17 is now set to emptyOnly.
         RouterModule.forRoot([
             {
                 path: "",

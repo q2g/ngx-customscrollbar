@@ -38,6 +38,8 @@ export abstract class NgxCustomScrollbarOverflow implements DoCheck, OnDestroy, 
      * angular change detection hook
      */
     ngDoCheck() {
+        // TODO check for angular >=17: For dynamically instantiated components we now execute ngDoCheck during change detection if the component is marked as dirty.
+        // You may need to update your tests or logic within ngDoCheck for dynamically instantiated components.
         if (this.needsUpdate) {
             this.toggleScrollbar();
         }
