@@ -1,5 +1,5 @@
-import { Injector, Component, Inject } from "@angular/core";
-import { AppComponent } from "./app.component";
+// import { Injector, Component, Inject } from "@angular/core";
+// import { AppComponent } from "./app.component";
 
 export function FormGroup(): ClassDecorator {
 
@@ -7,7 +7,8 @@ export function FormGroup(): ClassDecorator {
 
         return null;
 
-        // das er sich automatisch registriert ???
+        //#region das Folgende wurde auskommentiert, da seit "return null" nicht mehr erreichbar.
+        // damit er sich automatisch registriert ???
         if ( classConstructor.prototype.hasOwnProperty("ngOnInit")) {
 
             const original = classConstructor.prototype.ngOnInit;
@@ -15,5 +16,6 @@ export function FormGroup(): ClassDecorator {
                 original.apply(this, args);
             };
         }
+        //#endregion
     };
 }
