@@ -28,6 +28,9 @@ import { CdkVirtualScrollOverviewExampleComponent } from "./virtual-scroll/virtu
         MatTableModule,
         NgxCustomScrollbarModule,
         BrowserModule,
+        // TODO check for angular >=17: Make sure you configure
+        // setupTestingRouter, canceledNavigationResolution, paramsInheritanceStrategy, titleStrategy, urlUpdateStrategy, urlHandlingStrategy, and malformedUriErrorHandler
+        // in (provideRouter or) RouterModule.forRoot since these properties are now not part of the Router's public API
         RouterModule.forRoot([
             {
                 path: "",
