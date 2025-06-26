@@ -33,7 +33,12 @@
                         "sourceMap": true,
                         "optimization": false,
                         "namedChunks": true,
-                        "browser": "examples/main.ts"
+                        "browser": "examples/main.ts",
+                        "stylePreprocessorOptions": {
+                            "sass": {
+                                "silenceDeprecations": [ "mixed-decls", "color-functions", "global-builtin", "import" ]
+                            }
+                        }
                     },
                     "configurations": {
                         "production": {

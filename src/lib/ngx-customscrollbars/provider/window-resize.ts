@@ -70,7 +70,8 @@ export class WindowResize {
         this.zone.runOutsideAngular(() => {
             this.resizeSubscription = this.windowResize$
                 .pipe(debounceAnimationFrame())
-                .subscribe(() => this.shared$.next());
+                // TODO: testen von "undefined"
+                .subscribe(() => this.shared$.next(undefined));
         });
     }
 }
