@@ -30,7 +30,7 @@
     "devDependencies": {
         "@angular-devkit/build-angular": "^17.3.17",
         "@angular-devkit/core": "17.3.17",
-        "@angular/cdk": "16.2.14",
+        "@angular/cdk": "17.3.10",
         "@angular/cli": "17.3.17",
         "@angular/compiler-cli": "17.3.12",
         "@angular/language-service": "17.3.12",
