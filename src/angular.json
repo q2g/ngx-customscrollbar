@@ -61,18 +61,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "ngx-customscrollbars-examples:build"
+                        "buildTarget": "ngx-customscrollbars-examples:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ngx-customscrollbars-examples:build:production"
+                            "buildTarget": "ngx-customscrollbars-examples:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "ngx-customscrollbars-examples:build"
+                        "buildTarget": "ngx-customscrollbars-examples:build"
                     }
                 },
                 "test": {
