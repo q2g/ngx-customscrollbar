@@ -1,7 +1,8 @@
-import { BrowserModule } from "@angular/platform-browser";
+import { ScrollingModule } from "@angular/cdk/scrolling";
 import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
+import { MatTableModule } from "@angular/material/table";
 
 import { AppComponent } from "./app.component";
 import { VerticalScrollComponent } from "./vertical-scroll/vertical-scroll.component";
@@ -11,7 +12,6 @@ import { AsyncScrollComponent } from "./async/async-scroll.component";
 import { NgxCustomScrollbarModule } from "lib/public_api";
 import { TableComponent } from "./table/table.component";
 import { CdkVirtualScrollOverviewExampleComponent } from "./virtual-scroll/virtual-scroll.component";
-import { ScrollingModule } from "@angular/cdk/scrolling";
 
 @NgModule({
     declarations: [
